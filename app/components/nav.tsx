@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPalette } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon, faAdjust } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 
 import NavItem from './nav-item'
@@ -11,20 +11,43 @@ export default function Nav () {
   const [theme, setTheme] = useState('auto')
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen)
+  const applyTheme = (theme: string) => {
+    const root = document.documentElement
+    if (theme === 'light') {
+      root.style.setProperty('--foreground-rgb', '0, 0, 0')
+      root.style.setProperty('--background-rgb', '255, 255, 255')
+    } else if (theme === 'dark') {
+      root.style.setProperty('--foreground-rgb', '255, 255, 255')
+      root.style.setProperty('--background-rgb', '0, 0, 0')
+    } else {
+      // Auto theme: use system preference
+      const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches
+      if (prefersDark) {
+        root.style.setProperty('--foreground-rgb', '255, 255, 255')
+        root.style.setProperty('--background-rgb', '0, 0, 0')
+      } else {
+        root.style.setProperty('--foreground-rgb', '0, 0, 0')
+        root.style.setProperty('--background-rgb', '255, 255, 255')
+      }
+    }
   }
 
-  const selectTheme = (selectedTheme: string) => {
-    setTheme(selectedTheme)
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme)
     setDropdownOpen(false)
   }
+
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
 
   return (
     <nav className='bg-transparent p-4 flex justify-between items-center'>
       <div className='flex items-center'>
         <a href='/' className='text-gray-400 hover:text-gray-800'>
-          <Image src='/path-to-icon.png' width={8} height={8} alt='Logo' />
+          <Image src='/path-to-icon.png' width={32} height={32} alt='Logo' />
         </a>
       </div>
       <ul className='flex space-x-8'>
@@ -34,33 +57,33 @@ export default function Nav () {
       </ul>
       <div className='relative'>
         <button
-          onClick={toggleDropdown}
-          className='text-gray-400 hover:text-gray-800'
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className='text-gray-400 hover:text-gray-800 flex items-center'
         >
-          <FontAwesomeIcon icon={faPalette} />
+          {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
+          {theme === 'light' && <FontAwesomeIcon icon={faSun} />}
+          {theme === 'dark' && <FontAwesomeIcon icon={faMoon} />}
         </button>
         {dropdownOpen && (
-          <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg'>
-            <ul>
-              <li
-                className='px-4 py-2 hover:bg-gray-100 cursor-pointer'
-                onClick={() => selectTheme('auto')}
-              >
-                {theme === 'auto' && '•'} Auto
-              </li>
-              <li
-                className='px-4 py-2 hover:bg-gray-100 cursor-pointer'
-                onClick={() => selectTheme('light')}
-              >
-                {theme === 'light' && '•'} Light
-              </li>
-              <li
-                className='px-4 py-2 hover:bg-gray-100 cursor-pointer'
-                onClick={() => selectTheme('dark')}
-              >
-                {theme === 'dark' && '•'} Dark
-              </li>
-            </ul>
+          <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg'>
+            <button
+              onClick={() => handleThemeChange('auto')}
+              className='block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100'
+            >
+              <FontAwesomeIcon icon={faAdjust} /> Auto
+            </button>
+            <button
+              onClick={() => handleThemeChange('light')}
+              className='block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100'
+            >
+              <FontAwesomeIcon icon={faSun} /> Light
+            </button>
+            <button
+              onClick={() => handleThemeChange('dark')}
+              className='block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100'
+            >
+              <FontAwesomeIcon icon={faMoon} /> Dark
+            </button>
           </div>
         )}
       </div>

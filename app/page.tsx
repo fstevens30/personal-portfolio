@@ -6,7 +6,7 @@ export default function Home () {
     <>
       <Nav />
       <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-        <header>
+        <header className='shadow-sm rounded-lg border p-4 border-gray-200 dark:border-gray-600'>
           <h1 className='text-2xl p-2 font-semibold'>
             Kia Ora, I&apos;m Flynn
           </h1>
