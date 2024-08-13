@@ -6,11 +6,13 @@ export default function Home () {
     <>
       <Nav />
       <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-        <div>
-          <h1 className='text-xl'>Kia Ora, I&apos;m Flynn</h1>
-          <h2>Software Development Student</h2>
+        <header>
+          <h1 className='text-2xl p-2 font-semibold'>
+            Kia Ora, I&apos;m Flynn
+          </h1>
+          <h2 className='p-2 text-gray-400'>Software Development Student</h2>
 
-          <ul className='flex items-stretch p-2'>
+          <ul className='flex items-stretch p-4'>
             <LinkButton href='https://github.com/fstevens30' text='GitHub' />
             <LinkButton
               href='https://www.linkedin.com/in/fstevens30'
@@ -18,7 +20,7 @@ export default function Home () {
             />
             <LinkButton href='https://x.com/FlynnStevens30' text='Twitter' />
           </ul>
-        </div>
+        </header>
       </main>
     </>
   )
