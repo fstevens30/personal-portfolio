@@ -8,7 +8,7 @@ export default function NavItem ({ href, text }: NavItemProps) {
     <li>
       <a
         href={href}
-        className='text-gray-400 hover:text-gray-800 hover:underline underline-offset-8'
+        className='text-gray-400 hover:text-yellow-400 hover:underline underline-offset-8'
       >
         {text}
       </a>

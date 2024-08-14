@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-background: 255, 255, 255;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +24,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+h1 {
+  @apply text-2xl font-semibold p-2
+}
+
+h2 {
+  @apply p-2 text-gray-400
+}
+
+main {
+  @apply flex min-h-screen flex-col items-center justify-start p-24
 }

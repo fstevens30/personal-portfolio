@@ -1,8 +1,14 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun, faMoon, faAdjust } from '@fortawesome/free-solid-svg-icons'
+import {
+  faSun,
+  faMoon,
+  faAdjust,
+  faHome
+} from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 
 import NavItem from './nav-item'
@@ -10,7 +16,6 @@ import NavItem from './nav-item'
 export default function Nav () {
   const [theme, setTheme] = useState('auto')
   const [dropdownOpen, setDropdownOpen] = useState(false)
-
   const applyTheme = (theme: string) => {
     const root = document.documentElement
     if (theme === 'light') {
@@ -33,22 +38,21 @@ export default function Nav () {
       }
     }
   }
-
   const handleThemeChange = (theme: string) => {
     setTheme(theme)
     setDropdownOpen(false)
   }
-
   useEffect(() => {
     applyTheme(theme)
   }, [theme])
-
   return (
-    <nav className='bg-transparent p-4 flex justify-between items-center'>
+    <nav className='bg-transparent p-4 flex justify-evenly items-center'>
       <div className='flex items-center'>
-        <a href='/' className='text-gray-400 hover:text-gray-800'>
-          <Image src='/path-to-icon.png' width={32} height={32} alt='Logo' />
-        </a>
+        <Link href='/' passHref>
+          <span className='text-gray-400 hover:text-yellow-400'>
+            <FontAwesomeIcon icon={faHome} />
+          </span>
+        </Link>
       </div>
       <ul className='flex space-x-8'>
         <NavItem href='/about' text='About' />
@@ -58,11 +62,12 @@ export default function Nav () {
       <div className='relative'>
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          className='text-gray-400 hover:text-gray-800 flex items-center'
+          className='text-gray-400 hover:text-yellow-400 flex items-center'
         >
-          {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
+          Theme
+          {/* {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
           {theme === 'light' && <FontAwesomeIcon icon={faSun} />}
-          {theme === 'dark' && <FontAwesomeIcon icon={faMoon} />}
+          {theme === 'dark' && <FontAwesomeIcon icon={faMoon} />} */}
         </button>
         {dropdownOpen && (
           <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg'>
