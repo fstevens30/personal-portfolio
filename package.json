@@ -6,20 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "contentlayer": "contentlayer build"
   },
   "dependencies": {
+    "@contentlayer/cli": "^0.3.4",
+    "@contentlayer/core": "^0.3.4",
+    "@contentlayer/source-files": "^0.3.4",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@mdx-js/loader": "^3.0.1",
-    "@next/mdx": "^14.2.5",
-    "gray-matter": "^4.0.3",
+    "contentlayer": "^0.3.4",
     "next": "14.2.5",
-    "next-mdx-remote": "^5.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "remark": "^15.0.1"
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.13.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
+    "shiki": "^1.13.0"
   },
   "devDependencies": {
     "@types/node": "^20",
