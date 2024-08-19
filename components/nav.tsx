@@ -48,7 +48,9 @@ export default function Nav () {
     <nav className='bg-transparent p-4 flex justify-evenly items-center'>
       <div className='flex items-center'>
         <Link href='/' passHref>
-          <span className='text-gray-400 hover:text-gray-800'>Home</span>
+          <span className='text-gray-400 hover:text-gray-800'>
+            <FontAwesomeIcon icon={faHome}/>
+          </span>
         </Link>
       </div>
       <ul className='flex space-x-8'>
@@ -61,10 +63,9 @@ export default function Nav () {
           onClick={() => setDropdownOpen(!dropdownOpen)}
           className='text-gray-400 hover:text-gray-800 flex items-center'
         >
-          Theme
-          {/* {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
+          {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
           {theme === 'light' && <FontAwesomeIcon icon={faSun} />}
-          {theme === 'dark' && <FontAwesomeIcon icon={faMoon} />} */}
+          {theme === 'dark' && <FontAwesomeIcon icon={faMoon} />}
         </button>
         {dropdownOpen && (
           <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg'>
