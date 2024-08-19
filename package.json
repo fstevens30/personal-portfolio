@@ -16,15 +16,21 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "contentlayer": "^0.3.4",
+    "lucide-react": "^0.428.0",
     "next": "14.2.5",
+    "next-contentlayer": "^0.3.4",
     "react": "^18",
     "react-dom": "^18",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
-    "shiki": "^1.13.0"
+    "shiki": "^1.13.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",

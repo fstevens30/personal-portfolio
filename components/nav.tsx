@@ -9,7 +9,6 @@ import {
   faAdjust,
   faHome
 } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
 
 import NavItem from './nav-item'
 
@@ -49,9 +48,7 @@ export default function Nav () {
     <nav className='bg-transparent p-4 flex justify-evenly items-center'>
       <div className='flex items-center'>
         <Link href='/' passHref>
-          <span className='text-gray-400 hover:text-yellow-400'>
-            <FontAwesomeIcon icon={faHome} />
-          </span>
+          <span className='text-gray-400 hover:text-gray-800'>Home</span>
         </Link>
       </div>
       <ul className='flex space-x-8'>
@@ -62,7 +59,7 @@ export default function Nav () {
       <div className='relative'>
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          className='text-gray-400 hover:text-yellow-400 flex items-center'
+          className='text-gray-400 hover:text-gray-800 flex items-center'
         >
           Theme
           {/* {theme === 'auto' && <FontAwesomeIcon icon={faAdjust} />}
