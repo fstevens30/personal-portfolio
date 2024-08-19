@@ -4,11 +4,11 @@ export default function Home () {
   return (
     <>
       <main>
-        <header className='p-4'>
+        <header>
           <h1>Hey, I&apos;m Flynn</h1>
           <h2>Software Development Student</h2>
 
-          <ul className='flex items-stretch p-4'>
+          <ul>
             <LinkButton href='https://github.com/fstevens30' text='GitHub' />
             <LinkButton
               href='https://www.linkedin.com/in/fstevens30'

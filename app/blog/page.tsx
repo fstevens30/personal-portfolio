@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default function Blog () {
   return (
     <>
-      <main className='flex min-h-screen flex-col items-center p-24'>
+      <main>
         <h1>Blog Page</h1>
         <h2>A collection of blog posts, just random thoughts and ideas.</h2>
 
-        <div className='flex justify-center flex-wrap gap-4 mt-8'>
+        <div>
           {allPosts.map(post => (
             <BlogCard key={post.slug} post={post} />
           ))}
