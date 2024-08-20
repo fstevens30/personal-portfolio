@@ -3,7 +3,7 @@ import { PostItem } from '@/components/post-item'
 import { QueryPagination } from '@/components/query-pagination'
 import { sortPosts } from '@/lib/utils'
 
-const POSTS_PER_PAGE = 4
+const POSTS_PER_PAGE = 5
 
 interface BlogPageProps {
   searchParams: {
