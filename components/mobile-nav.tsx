@@ -26,7 +26,7 @@ export function MobileNav () {
           href='/'
           className='flex items-center'
         >
-          <Icons.logo className='mr-2 h-4 w-4' />
+          <Icons.home className='mr-2 h-4 w-4' />
           <span className='font-bold'>{siteConfig.name}</span>
         </MobileLink>
         <div className='flex flex-col gap-3 mt-3'>
@@ -39,30 +39,6 @@ export function MobileNav () {
           <MobileLink onOpenChange={setOpen} href='/blog'>
             Blog
           </MobileLink>
-          <Link target='_blank' rel='noreferrer' href={siteConfig.links.github}>
-            Github
-          </Link>
-          <Link
-            target='_blank'
-            rel='noreferrer'
-            href={siteConfig.links.twitter}
-          >
-            Twitter
-          </Link>
-          <Link
-            target='_blank'
-            rel='noreferrer'
-            href={siteConfig.links.youtube}
-          >
-            Youtube
-          </Link>
-          <Link
-            target='_blank'
-            rel='noreferrer'
-            href={siteConfig.links.linkedin}
-          >
-            LinkedIn
-          </Link>
         </div>
       </SheetContent>
     </Sheet>

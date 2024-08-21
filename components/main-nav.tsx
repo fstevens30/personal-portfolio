@@ -2,16 +2,15 @@
 
 import Link from 'next/link'
 import { Icons } from './icons'
-import { siteConfig } from '@/config/site'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { Home } from 'lucide-react'
 export function MainNav () {
   const pathname = usePathname()
   return (
     <nav className='flex items-center space-x-4 lg:space-x-6'>
       <Link href='/' className='mr-6 flex items-center space-x-2'>
-        <Icons.logo className='h-6 w-6' />
-        <span className='font-bold'>{siteConfig.name}</span>
+        <Home className='h-5 w-5' />
       </Link>
       <Link
         href='/about'

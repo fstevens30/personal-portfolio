@@ -14,6 +14,13 @@ export function formatDate (date: string | number): string {
   })
 }
 
+export function formatDateMonthYear (date: string | number): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short'
+  })
+}
+
 export function sortPosts (posts: Array<Post>) {
   return posts.sort((a, b) => {
     if (a.date > b.date) return -1
