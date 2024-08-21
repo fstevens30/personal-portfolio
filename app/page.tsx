@@ -1,4 +1,5 @@
 import DegreeProgressBar from '@/components/degree-progress-bar'
+import TechIcon from '@/components/tech-icon'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { ArrowUpRight } from 'lucide-react'
@@ -11,7 +12,7 @@ export default function Home () {
         <h1 className='text-xl sm:text:2xl md:text-3xl lg:text-4xl font-black text-balance'>
           Hey, I&apos;m Flynn
         </h1>
-        <p className='max-2-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
+        <p className='max-p-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
           I&apos;m a Software Development student based in Christchurch, New
           Zealand.
         </p>
@@ -55,6 +56,20 @@ export default function Home () {
           </p>
           <div className='flex justify-center mt-4 p-4'>
             <DegreeProgressBar currentCredits={225} />
+          </div>
+        </div>
+        <div className='flex flex-col justify-center mt-8'>
+          <h1 className='text-lg'>Tech</h1>
+          <p className='w-full max-w-[42rem] mx-auto text-muted-foreground'>
+            Some of the technologies I have experience with and enjoy working
+            with.
+          </p>
+          <div className='grid grid-cols-2 lg:grid-cols-4 gap-1 mt-2 justify-center'>
+            {siteConfig.tech.map(tech => (
+              <div key={tech} className='flex justify-center items-center p-4'>
+                <TechIcon name={tech} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

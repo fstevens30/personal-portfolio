@@ -48,11 +48,16 @@ export function ProjectItem ({
       <CardFooter className='flex justify-center'>
         <div className='flex gap-4'>
           {href && (
-            <Link href={href} passHref>
+            <Link
+              href={href}
+              passHref
+              rel='noopener noreferrer'
+              target='_blank'
+            >
               <Button>View Project</Button>
             </Link>
           )}
-          <Link href={repo} passHref>
+          <Link href={repo} passHref rel='noopener noreferrer' target='_blank'>
             <Button variant={'secondary'}>Source Code</Button>
           </Link>
         </div>

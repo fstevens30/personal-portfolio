@@ -24,8 +24,19 @@ const projects = [
     tech: ['Django', 'Python', 'HTML', 'CSS', 'mySQL'],
     image: '/images/nz-healthcare.png',
     date: '2023-11-30'
+  },
+  {
+    title: 'Personal Portfolio',
+    description: 'This website, a showcase of my work and an online resume.',
+    href: 'https://flynn-stevens.com/',
+    repo: 'https://github.com/fstevens30/personal-portfolio',
+    tech: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Shadcn UI'],
+    image: '/images/placeholder.webp',
+    date: '2024-08-21'
   }
 ]
+
+projects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
 export default function Projects () {
   return (
