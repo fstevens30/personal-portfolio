@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
-import '../styles/globals.css'
-import Nav from '../components/nav'
-import { ReactNode } from 'react'
-
+import { Inter } from 'next/font/google'
+import './globals.css'
 import { cn } from '@/lib/utils'
-import { ThemeProvider } from '../components/theme-provider'
+import { SiteHeader } from '@/components/site-header'
+import { Providers } from '@/components/providers'
 
-const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
   title: 'Flynn Stevens',
@@ -15,27 +13,26 @@ export const metadata: Metadata = {
     'Personal portfolio site for Flynn Stevens, Software development student at Ara Institute of Canterbury.'
 }
 
-interface RootLayoutProps {
-  children: ReactNode
-}
-
-export default function RootLayout ({ children }: RootLayoutProps) {
+export default function RootLayout ({
+  children
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <>
-      <html lang='en' suppressHydrationWarning>
-        <head />
-        <body>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Nav />
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+    <html lang='en' className='scroll-pt-[3.5rem]'>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          inter.variable
+        )}
+      >
+        <Providers>
+          <div className='relative flex min-h-dvh flex-col bg-background'>
+            <SiteHeader />
+            <main className='flex-1'>{children}</main>
+          </div>
+        </Providers>
+      </body>
+    </html>
   )
 }
