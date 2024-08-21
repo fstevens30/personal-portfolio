@@ -41,10 +41,10 @@ export function ProjectItem ({
       <div className='flex justify-center p-'>
         <Image src={image} alt={title} width={800} height={400} />
       </div>
-      <CardDescription className='mt-4 p-2'>
+      <div className='mt-4 p-2'>
         <p className='font-bold'>Tech Stack:</p>
         <p>{tech.join(', ')}</p>
-      </CardDescription>
+      </div>
       <CardFooter className='flex justify-center'>
         <div className='flex gap-4'>
           {href && (

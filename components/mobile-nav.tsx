@@ -1,13 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription
+} from './ui/sheet'
 import { Button } from './ui/button'
-import { Menu } from 'lucide-react'
+import { Home, Menu } from 'lucide-react'
 import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Icons } from './icons'
-import { siteConfig } from '@/config/site'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 export function MobileNav () {
   const [open, setOpen] = useState(false)
@@ -21,13 +26,17 @@ export function MobileNav () {
         </Button>
       </SheetTrigger>
       <SheetContent side='right'>
+        <VisuallyHidden>
+          <SheetTitle>Navigation Menu</SheetTitle>
+          <SheetDescription>Navigate through the site</SheetDescription>
+        </VisuallyHidden>
         <MobileLink
           onOpenChange={setOpen}
           href='/'
           className='flex items-center'
         >
-          <Icons.home className='mr-2 h-4 w-4' />
-          <span className='font-bold'>{siteConfig.name}</span>
+          <Home className='h-5 w-5' />
+          <span className='sr-only'>Home</span>
         </MobileLink>
         <div className='flex flex-col gap-3 mt-3'>
           <MobileLink onOpenChange={setOpen} href='/about'>

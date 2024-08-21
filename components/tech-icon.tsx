@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Button } from './ui/button'
 
 export default function TechIcon ({ name }: { name: string }) {
   const [src, setSrc] = useState(
