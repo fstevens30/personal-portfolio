@@ -11,25 +11,15 @@ export const siteConfig = {
   },
   tech: [
     'swift',
-    'python',
     'django',
-    'javascript',
     'react',
     'nextjs',
-    'typescript',
     'tailwindcss',
     'firebase',
-    'mysql',
-    'git',
-    'github',
     'vscode',
     'xcode',
-    'java',
-    'androidstudio',
     'html5',
-    'css3',
-    'sass',
-    'jasmine'
+    'css3'
   ]
 }
 
