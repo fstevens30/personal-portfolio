@@ -13,8 +13,8 @@ export default function DegreeProgressBar ({
   return (
     <div className='relative w-full max-w-[42rem] mx-auto flex flex-col'>
       <Progress value={progress} max={100} className='w-full' />
-      <p className='text-muted-foreground text-sm justify-center'>
-        {currentCredits}/{totalCredits} Credits
+      <p className='text-muted-foreground text-sm justify-center p-4'>
+        <b>{currentCredits}</b>/{totalCredits} Credits
       </p>
     </div>
   )
