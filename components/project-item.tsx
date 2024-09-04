@@ -38,29 +38,21 @@ export function ProjectItem ({
         </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <div className='flex justify-center p-'>
+      <div className='flex justify-center p-4'>
         <Image src={image} alt={title} width={800} height={400} />
       </div>
-      <div className='mt-4 p-2'>
-        <p className='font-bold'>Tech Stack:</p>
-        <p>{tech.join(', ')}</p>
+      <div className='px-4'>
+        <p className='text-muted-foreground'>{tech.join(', ')}</p>
       </div>
-      <CardFooter className='flex justify-center'>
-        <div className='flex gap-4'>
-          {href && (
-            <Link
-              href={href}
-              passHref
-              rel='noopener noreferrer'
-              target='_blank'
-            >
-              <Button>View Project</Button>
-            </Link>
-          )}
-          <Link href={repo} passHref rel='noopener noreferrer' target='_blank'>
-            <Button variant={'secondary'}>Source Code</Button>
+      <CardFooter className='flex justify-between p-4'>
+        {href && (
+          <Link href={href} passHref rel='noopener noreferrer' target='_blank'>
+            <Button>View Project</Button>
           </Link>
-        </div>
+        )}
+        <Link href={repo} passHref rel='noopener noreferrer' target='_blank'>
+          <Button variant={'secondary'}>Source Code</Button>
+        </Link>
       </CardFooter>
     </Card>
   )

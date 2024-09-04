@@ -52,7 +52,7 @@ export default function Projects () {
         </div>
       </div>
       <hr className='mt-8' />
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 md:p-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 md:p-8'>
         {projects.map(project => (
           <ProjectItem key={project.title} {...project} />
         ))}
