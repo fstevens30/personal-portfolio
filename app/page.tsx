@@ -48,7 +48,7 @@ export default function Home () {
             </Button>
           </Link>
         </div>
-        <div className='flex flex-col justify-center mt-[16rem]'>
+        <div className='flex flex-col justify-center mt-[8rem]'>
           <h1 className='text-lg'>Study</h1>
           <p className='w-full max-w-[42rem] mx-auto text-muted-foreground'>
             I am studying Bachelor of Information Technology at Ara Institute of
@@ -64,10 +64,10 @@ export default function Home () {
             Some of the technologies I have experience with and enjoy working
             with.
           </p>
-          <div className='grid grid-cols-2 lg:grid-cols-4 gap-1 mt-2 justify-center'>
-            {siteConfig.tech.map(tech => (
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mt-2 justify-center'>
+            {Object.keys(siteConfig.tech).map(tech => (
               <div key={tech} className='flex justify-center items-center p-4'>
-                <TechIcon name={tech} />
+                <TechIcon name={tech as keyof typeof siteConfig.tech} />
               </div>
             ))}
           </div>
