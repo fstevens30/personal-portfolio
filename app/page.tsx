@@ -48,7 +48,7 @@ export default function Home () {
             </Button>
           </Link>
         </div>
-        <div className='flex flex-col justify-center mt-[8rem]'>
+        <div className='flex flex-col justify-center mt-[10rem]'>
           <h1 className='text-lg'>Study</h1>
           <p className='w-full max-w-[42rem] mx-auto text-muted-foreground'>
             I am studying Bachelor of Information Technology at Ara Institute of
