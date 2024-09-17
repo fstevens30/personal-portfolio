@@ -9,10 +9,12 @@ export function MainNav () {
   const pathname = usePathname()
   return (
     <nav className='flex items-center space-x-4 lg:space-x-6'>
-      <Link href='/' className='mr-6 flex items-center space-x-2'>
-        <Home className='h-5 w-5' />
-        <span className='sr-only'>Home</span>
-      </Link>
+      <Button variant='ghost' className='mr-6 flex items-center space-x-2'>
+        <Link href='/'>
+          <Home className='h-5 w-5' />
+          <span className='sr-only'>Home</span>
+        </Link>
+      </Button>
 
       <Link href='/about'>
         <Button
