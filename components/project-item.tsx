@@ -39,7 +39,13 @@ export function ProjectItem ({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <div className='flex justify-center p-4'>
-        <Image src={image} alt={title} width={800} height={400} />
+        <Image
+          src={image}
+          alt={title}
+          width={800}
+          height={400}
+          className='rounded-md'
+        />
       </div>
       <div className='px-4'>
         <p className='text-muted-foreground'>{tech.join(', ')}</p>
