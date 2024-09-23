@@ -38,7 +38,7 @@ export default function About () {
 
       <div className='flex justify-between my-8 items-center'>
         <GalleryImage
-          src='/images/invercargill.jpg'
+          src='/images/invers.jpg'
           alt='Invercargill'
           description='Ōreti Beach - Invercargill'
           width={400}
@@ -69,7 +69,7 @@ export default function About () {
 
       <div className='flex justify-between my-8 items-center'>
         <GalleryImage
-          src='/images/christchurch.jpg'
+          src='/images/chch.jpg'
           alt='Invercargill'
           description='View from my balcony in Christchurch'
           width={800}
