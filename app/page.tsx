@@ -3,6 +3,7 @@ import TechIcon from '@/components/tech-icon'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home () {
@@ -12,6 +13,15 @@ export default function Home () {
         <h1 className='text-xl sm:text:2xl md:text-3xl lg:text-4xl font-black text-balance'>
           Hey, I&apos;m Flynn
         </h1>
+        <div className='self-center'>
+          <Image
+            src='/images/profile.png'
+            alt='Profile Picture'
+            width={150}
+            height={150}
+            className='rounded-full'
+          />
+        </div>
         <p className='max-p-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
           I&apos;m a Software Development student based in Christchurch, New
           Zealand.
