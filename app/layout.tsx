@@ -14,7 +14,10 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   manifest: '/manifest.json',
   keywords: ['portfolio', 'software developer', 'new zealand', 'flynn stevens'],
-  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#fff' }],
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#1a202c' },
+    { media: '(prefers-color-scheme: light)', color: '#f7fafc' }
+  ],
   authors: [
     {
       name: 'Flynn Stevens'
