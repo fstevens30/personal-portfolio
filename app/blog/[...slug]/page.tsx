@@ -2,6 +2,7 @@ import { posts } from '#site/content'
 import { MDXContent } from '@/components/mdx-components'
 import { notFound } from 'next/navigation'
 import '@/styles/mdx.css'
+import { formatDate } from '@/lib/utils'
 interface PostPageProps {
   params: {
     slug: string[]
@@ -34,6 +35,8 @@ export default async function PostPage ({ params }: PostPageProps) {
       {post.description ? (
         <p className='tet-xl mt-0 text-muted-foreground'>{post.description}</p>
       ) : null}
+      <p className='m-0 text-muted-foreground'>{formatDate(post.date)}</p>
+      <p className='m-0 text-muted-foreground'>{post.author}</p>
       <hr className='my-4' />
       <MDXContent code={post.body} />
     </article>
