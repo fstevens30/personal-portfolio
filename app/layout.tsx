@@ -10,7 +10,22 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 export const metadata: Metadata = {
   title: 'Flynn Stevens',
   description:
-    'Personal portfolio site for Flynn Stevens, Software development student at Ara Institute of Canterbury.'
+    'Personal portfolio site for Flynn Stevens, Software development student at Ara Institute of Canterbury.',
+  generator: 'Next.js',
+  manifest: '/manifest.json',
+  keywords: ['portfolio', 'software developer', 'new zealand', 'flynn stevens'],
+  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#fff' }],
+  authors: [
+    {
+      name: 'Flynn Stevens'
+    }
+  ],
+  viewport:
+    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
+  icons: [
+    { rel: 'apple-touch-icon', url: 'icons/profile-128.png' },
+    { rel: 'icon', url: 'icons/profile-128.png' }
+  ]
 }
 
 export default function RootLayout ({

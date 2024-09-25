@@ -1,0 +1,27 @@
+{
+    "name": "Flynn Stevens",
+    "short_name": "Flynn Stevens",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "display": "browser",
+    "orientation": "natural",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "icons/profile-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icons/profile-256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "icons/profile-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
