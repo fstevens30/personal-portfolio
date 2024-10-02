@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import {
   Tooltip,
@@ -8,14 +7,9 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from './ui/tooltip'
-import { siteConfig, TechKeys } from '../config/site' // Import siteConfig and TechKeys
+import { siteConfig, TechKeys } from '../config/site'
 
 export default function TechIcon ({ name }: { name: TechKeys }) {
-  // Use TechKeys type for name
-  const [src, setSrc] = useState(
-    `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`
-  )
-
   // Get the descriptive name from the tech dictionary
   const descriptiveName = siteConfig.tech[name] || name
 
@@ -25,15 +19,10 @@ export default function TechIcon ({ name }: { name: TechKeys }) {
         <TooltipTrigger>
           <span className='sr-only'>{descriptiveName}</span>
           <Image
-            src={src}
+            src={`/images/tech/${name}.svg`}
             width={75}
             height={75}
             alt={descriptiveName}
-            onError={() =>
-              setSrc(
-                `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-plain.svg`
-              )
-            }
           />
         </TooltipTrigger>
         <TooltipContent>
