@@ -33,6 +33,16 @@ const projects = [
     tech: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Shadcn UI'],
     image: '/images/placeholder.webp',
     date: '2024-08-21'
+  },
+  {
+    title: 'Virtual Emerge',
+    description:
+      'Explore Ara BICT student final year projects, in the Virtual Emerge showcase.',
+    href: 'https://virtual-emerge.vercel.app',
+    repo: 'https://github.com/fstevens30/virtual-emerge',
+    tech: ['Next.js', 'TypeScript', 'Shadc UI', 'Supabase'],
+    image: '/images/virtual-emerge.png',
+    date: '2024-11-15'
   }
 ]
 
