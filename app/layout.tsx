@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
@@ -14,20 +14,25 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   manifest: '/manifest.json',
   keywords: ['portfolio', 'software developer', 'new zealand', 'flynn stevens'],
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#1a202c' },
-    { media: '(prefers-color-scheme: light)', color: '#f7fafc' }
-  ],
   authors: [
     {
       name: 'Flynn Stevens'
     }
   ],
-  viewport:
-    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
   icons: [
     { rel: 'apple-touch-icon', url: 'icons/profile-128.png' },
     { rel: 'icon', url: 'icons/profile-128.png' }
+  ]
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' }
   ]
 }
 
