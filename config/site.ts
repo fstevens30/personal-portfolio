@@ -1,3 +1,5 @@
+import { types } from 'util'
+
 export const siteConfig = {
   name: 'Flynn Stevens',
   url: 'https://flynn-stevens.com',
@@ -11,15 +13,17 @@ export const siteConfig = {
   },
   tech: {
     swift: 'Swift',
+    typescript: 'TypeScript',
     django: 'Django',
     react: 'React',
     nextjs: 'Next.js',
-    tailwindcss: 'Tailwind CSS',
-    firebase: 'Firebase',
+    html5: 'HTML5',
     vscode: 'VS Code',
     xcode: 'Xcode',
-    html5: 'HTML5',
-    css3: 'CSS3'
+    tailwindcss: 'Tailwind CSS',
+    supabase: 'Supabase',
+    css3: 'CSS3',
+    javascript: 'JavaScript'
   }
 }
 
