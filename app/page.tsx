@@ -65,7 +65,7 @@ export default function Home () {
             Canterbury. Below is my progress towards the degree.
           </p>
           <div className='flex justify-center mt-4 p-4'>
-            <DegreeProgressBar currentCredits={255} />
+            <DegreeProgressBar currentCredits={285} />
           </div>
         </div>
         <div className='flex flex-col justify-center mt-8'>
