@@ -11,7 +11,7 @@ export default function Home () {
     <section className='space-y-6 pb-8 pt-6 md:pb-12 md:mt-10 lg:py-32'>
       <div className='container flex flex-col gap-4 text-center pb-10'>
         <h1 className='text-xl sm:text:2xl md:text-3xl lg:text-4xl font-black text-balance'>
-          Hey, I&apos;m Flynn
+          Kia Ora, I&apos;m Flynn
         </h1>
         <div className='self-center'>
           <Image
@@ -23,8 +23,7 @@ export default function Home () {
           />
         </div>
         <p className='max-p-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
-          I&apos;m a Software Development student based in Christchurch, New
-          Zealand.
+          I&apos;m a Software Development student based in Ōtautahi, Aotearoa.
         </p>
         <div className='flex justify-center gap-4'>
           <Link
