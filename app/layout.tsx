@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { SiteHeader } from '@/components/site-header'
 import { Providers } from '@/components/providers'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -55,6 +56,7 @@ export default function RootLayout ({
             <main className='flex-1'>{children}</main>
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
