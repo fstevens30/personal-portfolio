@@ -48,7 +48,7 @@ export default function About () {
           Technology and earned my Diploma in Web Design and Developemt. From
           there I moved to{' '}
           <Translator english='Christchurch' maori='Ōtautahi' /> with my partner
-          to contie study in order to earn my Bachelor of Information
+          to continue study in order to earn my Bachelor of Information
           Technology.
         </p>
       </div>
