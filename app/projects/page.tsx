@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 const projects = [
   {
     title: 'Kiwi Huts',
-    description: 'Built with SwiftUI, explore DOC huts in New Zealand.',
+    description:
+      'Built with SwiftUI, explore DOC huts in New Zealand. Currently Unavailable.',
     href: 'https://apps.apple.com/nz/app/kiwi-huts/id6502030661',
     repo: 'https://github.com/fstevens30/Kiwi-Huts',
     tech: ['SwiftUI', 'Swift', 'Firebase', 'Python'],
@@ -40,7 +41,7 @@ const projects = [
       'Explore Ara BICT student final year projects, in the Virtual Emerge showcase.',
     href: 'https://virtual-emerge.vercel.app',
     repo: 'https://github.com/fstevens30/virtual-emerge',
-    tech: ['Next.js', 'TypeScript', 'Shadc UI', 'Supabase'],
+    tech: ['Next.js', 'TypeScript', 'Shadcn UI', 'Supabase'],
     image: '/images/virtual-emerge.png',
     date: '2024-11-15'
   }
