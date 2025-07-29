@@ -15,7 +15,7 @@ export default function Home () {
         </h1>
         <div className='self-center'>
           <Image
-            src='/images/profile.png'
+            src='/images/profile.jpeg'
             alt='Profile Picture'
             width={150}
             height={150}
