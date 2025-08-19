@@ -9,7 +9,8 @@ export const siteConfig = {
     twitter: 'https://x.com/FlynnStevens30',
     github: 'https://github.com/fstevens30',
     linkedin: 'https://www.linkedin.com/in/fstevens30/',
-    youtube: 'https://www.youtube.com/@flynnstevens8211'
+    youtube: 'https://www.youtube.com/@flynnstevens8211',
+    bluesky: 'https://bsky.app/profile/flynn-stevens.com'
   },
   tech: {
     swift: 'Swift',
