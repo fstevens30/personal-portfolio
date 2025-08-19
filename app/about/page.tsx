@@ -1,5 +1,14 @@
 import { Metadata } from 'next'
 import GalleryImage from '@/components/gallery-image'
+import { Card } from '@/components/ui/card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel'
+import Translator from '@/components/translator'
 
 export const metadata: Metadata = {
   title: 'About | Flynn Stevens',
@@ -21,66 +30,88 @@ export default function About () {
       </div>
       <hr className='mt-8' />
 
-      <div className='flex justify-between my-4 items-center'>
-        <p className='pr-4'>
-          I have a passion for programming and really enjoy solving puzzles and
-          seeing my solutions come to life. When I&apos;m not studying, I enjoy
-          being out in nature, cooking or cuddling with my kitten Zena.
-        </p>
-        <GalleryImage
-          src='/images/zena.jpg'
-          alt='Zena'
-          description='Zena'
-          width={400}
-          height={400}
-        />
-      </div>
-
-      <div className='flex justify-between my-8 items-center'>
-        <GalleryImage
-          src='/images/invers.jpg'
-          alt='Invercargill'
-          description='Ōreti Beach - Invercargill'
-          width={400}
-          height={400}
-        />
-        <p className='pl-4'>
-          I was born and raised down south in Invercargill, New Zealand. I love
-          the beach there and also how close it is to some great hiking trails.
-          I don&apos;t miss the cold weather and the howling wind.
+      <div className='flex-col justify-between my-4 items-center'>
+        <p>
+          I have a passion for programming and really enjoy the problem-solving
+          aspect and seeing my solutions come to life. When I&apos;m not
+          studying, I enjoy being out in nature, cooking or hanging with my cat,
+          Zena. I also enjoy working out and have recently taken up pilates.
         </p>
       </div>
 
-      <div className='flex justify-between my-8 items-center'>
-        <p className='pr-4'>
-          I moved to Nelson when I was 19 in order to study Conservation.
-          However I had to give up that dream due to health issues. I decided
-          that a Web Development Diploma at NMIT interested me, and well, the
-          rest is history.
+      <div className='flex-col justify-between my-8 items-center'>
+        <p>
+          I was born and raised down south in{' '}
+          <Translator english='Invercargill' maori='Waihōpai' />. At 18 I moved
+          north to sunny <Translator english='Nelson' maori='Whakatū' /> for a
+          fresh start. I began studying at Nelson Marlborough Institute of
+          Technology and earned my Diploma in Web Design and Developemt. From
+          there I moved to{' '}
+          <Translator english='Christchurch' maori='Ōtautahi' /> with my partner
+          to continue study in order to earn my Bachelor of Information
+          Technology.
         </p>
-        <GalleryImage
-          src='/images/nelson.jpg'
-          alt='Nelson'
-          description='Overlooking Nelson CBD'
-          width={800}
-          height={600}
-        />
       </div>
 
-      <div className='flex justify-between my-8 items-center'>
-        <GalleryImage
-          src='/images/chch.jpg'
-          alt='Invercargill'
-          description='View from my balcony in Christchurch'
-          width={800}
-          height={600}
-        />
-        <p className='pl-4'>
-          After completing my diploma my partner and I moved to Christchurch for
-          more opportunites for work and study. I am completing my bachelors at
-          Ara Institute.
+      <div className='flex-col justify-between my-8 items-center'>
+        <p>
+          I have a passion for sustainability and a community-driven approach to
+          life. I have a strong interest in urban planning and transport in
+          particular. I want to be able to leverage my IT skills in order to
+          create solutions that provide a positive impact on the environment and
+          society.
         </p>
       </div>
+      <Carousel className='w-full max-w-3xl mx-auto my-12'>
+        <CarouselContent>
+          <CarouselItem>
+            <Card className='p-8 flex justify-center items-center'>
+              <GalleryImage
+                alt='Ōtautahi'
+                description='Ōtautahi'
+                src='/images/chch.jpg'
+                width={600}
+                height={400}
+              />
+            </Card>
+          </CarouselItem>
+          <CarouselItem>
+            <Card className='p-8 flex justify-center items-center'>
+              <GalleryImage
+                alt='Zena the cat'
+                description='Zena the cat.'
+                src='/images/zena.jpg'
+                width={400}
+                height={600}
+              />
+            </Card>
+          </CarouselItem>
+          <CarouselItem>
+            <Card className='p-8 flex justify-center items-center'>
+              <GalleryImage
+                alt='Invercargill'
+                description='Ōreti beach, Waihōpai'
+                src='/images/invers.jpg'
+                width={400}
+                height={600}
+              />
+            </Card>
+          </CarouselItem>
+          <CarouselItem>
+            <Card className='p-8 flex justify-center items-center'>
+              <GalleryImage
+                alt='Nelson'
+                description='Nelson'
+                src='/images/nelson.jpg'
+                width={600}
+                height={400}
+              />
+            </Card>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious className='absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm' />
+        <CarouselNext className='absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm' />
+      </Carousel>
     </div>
   )
 }
