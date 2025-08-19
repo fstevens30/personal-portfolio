@@ -37,12 +37,12 @@ export default function Home () {
             </Button>
           </Link>
           <Link
-            href={siteConfig.links.twitter}
+            href={siteConfig.links.bluesky}
             target='_blank'
             rel='noopener noreferrer'
           >
             <Button variant='outline'>
-              Twitter
+              Bluesky
               <ArrowUpRight className='ml-2 h-4 w-4 text-muted-foreground' />
             </Button>
           </Link>
