@@ -2,6 +2,7 @@ import { defineConfig, defineCollection, s } from 'velite'
 import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeExternalLinks from 'rehype-external-links'
 
 const computedFields = <T extends { slug: string }>(data: T) => ({
   ...data,
@@ -36,6 +37,10 @@ export default defineConfig({
   collections: { posts },
   mdx: {
     rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        { target: '_blank', rel: ['noopener', 'noreferrer'] }
+      ],
       rehypeSlug,
       [rehypePrettyCode, { theme: 'one-dark-pro' }],
       [
