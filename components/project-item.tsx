@@ -14,7 +14,7 @@ interface ProjectProps {
   title: string
   description: string
   href?: string
-  repo: string
+  repo?: string
   tech: string[]
   image: string
   date: string
@@ -56,9 +56,11 @@ export function ProjectItem ({
             <Button>View Project</Button>
           </Link>
         )}
-        <Link href={repo} passHref rel='noopener noreferrer' target='_blank'>
-          <Button variant={'secondary'}>Source Code</Button>
-        </Link>
+        {repo && (
+          <Link href={repo} passHref rel='noopener noreferrer' target='_blank'>
+            <Button variant={'secondary'}>Source Code</Button>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   )
