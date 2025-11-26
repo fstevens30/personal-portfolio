@@ -23,7 +23,7 @@ export default function Home () {
           />
         </div>
         <p className='max-p-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
-          I&apos;m a Software Development student based in Ōtautahi, Aotearoa.
+          I&apos;m a Software Developer based in Ōtautahi, Aotearoa.
         </p>
         <div className='flex justify-center gap-4'>
           <Link
@@ -60,11 +60,11 @@ export default function Home () {
         <div className='flex flex-col justify-center mt-[10rem]'>
           <h1 className='text-l pb-2'>Study</h1>
           <p className='w-full max-w-[42rem] mx-auto text-muted-foreground'>
-            I am studying Bachelor of Information Technology at Ara Institute of
-            Canterbury. Below is my progress towards the degree.
+            I have recently completed my Bachelor of Information Technology
+            degree at Ara Institute of Canterbury.
           </p>
           <div className='flex justify-center mt-4 p-4'>
-            <DegreeProgressBar currentCredits={315} />
+            <DegreeProgressBar currentCredits={360} />
           </div>
         </div>
         <div className='flex flex-col justify-center mt-8'>

@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: 'Kiwi Huts',
+    title: 'Kiwi Huts iOS',
     description:
       'Built with SwiftUI, explore DOC huts in New Zealand. Currently Unavailable.',
     href: 'https://apps.apple.com/nz/app/kiwi-huts/id6502030661',
-    repo: 'https://github.com/fstevens30/Kiwi-Huts',
+    repo: 'https://github.com/fstevens30/Kiwi-Huts-iOS',
     tech: ['SwiftUI', 'Swift', 'Firebase', 'Python'],
     image: '/images/kiwi-huts.png',
     date: '2024-06-09'
@@ -44,6 +44,16 @@ const projects = [
     tech: ['Next.js', 'TypeScript', 'Shadcn UI', 'Supabase'],
     image: '/images/virtual-emerge.png',
     date: '2024-11-15'
+  },
+  {
+    title: 'Ferrostar .NET MAUI',
+    description:
+      'Cross platform mobile navigation library, port of Ferrostar to work with .NET MAUI.',
+    href: 'https://flynn-stevens.com/blog/ferrostar-maui',
+    repo: '',
+    tech: ['C#', '.NET MAUI', 'Ferrostar', 'Android'],
+    image: '/images/ferrostar-maui.png',
+    date: '2025-11-20'
   }
 ]
 

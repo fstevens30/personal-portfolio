@@ -19,12 +19,12 @@ export const siteConfig = {
     react: 'React',
     nextjs: 'Next.js',
     html5: 'HTML5',
-    vscode: 'VS Code',
     xcode: 'Xcode',
     tailwindcss: 'Tailwind CSS',
     supabase: 'Supabase',
     css3: 'CSS3',
-    javascript: 'JavaScript'
+    javascript: 'JavaScript',
+    csharp: 'C#'
   }
 }
 
