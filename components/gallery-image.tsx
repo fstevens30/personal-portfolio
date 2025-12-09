@@ -31,7 +31,7 @@ export default function GalleryImage ({
             width={width}
             height={height}
             alt={alt}
-            className='rounded-md'
+            className='rounded-md w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
           />
         </TooltipTrigger>
         <TooltipContent>
