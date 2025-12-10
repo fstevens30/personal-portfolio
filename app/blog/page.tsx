@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { posts } from '#site/content'
 import { PostItem } from '@/components/post-item'
 import { QueryPagination } from '@/components/query-pagination'
@@ -51,7 +52,13 @@ export default async function BlogPage ({ searchParams }: BlogPageProps) {
       ) : (
         <p>No posts to display, check back later.</p>
       )}
-      <QueryPagination totalPages={totalPages} className='justify-end mt-4' />
+      <Suspense
+        fallback={
+          <div className='flex justify-end mt-4'>Loading pagination...</div>
+        }
+      >
+        <QueryPagination totalPages={totalPages} className='justify-end mt-4' />
+      </Suspense>
     </div>
   )
 }
