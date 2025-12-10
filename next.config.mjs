@@ -18,10 +18,11 @@ class VeliteWebpackPlugin {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true, // Enable React strict mode for improved error handling
-  swcMinify: true, // Enable SWC minification for improved performance
   compiler: {
     removeConsole: process.env.NODE_ENV !== 'development' // Remove console.log in production
   },
+  // Turbopack config (Next.js 16 uses Turbopack by default)
+  turbopack: {},
   webpack: config => {
     config.plugins.push(new VeliteWebpackPlugin())
     return config
