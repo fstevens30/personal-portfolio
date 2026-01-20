@@ -4,7 +4,7 @@ import { PostItem } from '@/components/post-item'
 import { QueryPagination } from '@/components/query-pagination'
 import { sortPosts } from '@/lib/utils'
 
-const POSTS_PER_PAGE = 5
+const POSTS_PER_PAGE = 10
 
 interface BlogPageProps {
   searchParams: {
@@ -13,7 +13,9 @@ interface BlogPageProps {
 }
 
 export default async function BlogPage ({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams?.page) || 1
+  const params = await searchParams
+  const currentPage = Number(params?.page) || 1
+
   const sortedPosts = sortPosts(posts.filter(post => post.published))
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
 
