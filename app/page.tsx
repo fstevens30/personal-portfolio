@@ -22,8 +22,10 @@ export default function Home () {
             className='rounded-full'
           />
         </div>
-        <p className='max-p-[42rem] mx-auto text-muted-foreground sm:text-lg text-balance'>
-          I&apos;m a Software Developer based in Ōtautahi, Aotearoa.
+        <p className='max-p-[42rem] mx-2 text-muted-foreground sm:text-lg text-balance'>
+          I&apos;m a Junior Software Developer based in Ōtautahi, Aotearoa.
+          Currently working web-based mapping applications, as well as .NET MAUI
+          mobile applications.
         </p>
         <div className='flex justify-center gap-4'>
           <Link
@@ -61,7 +63,8 @@ export default function Home () {
           <h1 className='text-l pb-2'>Study</h1>
           <p className='w-full max-w-[42rem] mx-auto text-muted-foreground'>
             I have recently completed my Bachelor of Information Technology
-            degree at Ara Institute of Canterbury.
+            degree at Ara Institute of Canterbury, specialising in Software
+            Development with distinction.
           </p>
           <div className='flex justify-center mt-4 p-4'>
             <DegreeProgressBar currentCredits={360} />
