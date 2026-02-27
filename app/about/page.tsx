@@ -225,7 +225,7 @@ export default function About () {
 
           <div className='space-y-4'>
             <h2 className='text-2xl font-bold'>My Journey</h2>
-            <p className='text-muted-foreground'>
+            <div className='text-muted-foreground'>
               I was born and raised down south in{' '}
               <Translator english='Invercargill' maori='Waihōpai' />. At 18 I
               moved north to sunny{' '}
@@ -235,7 +235,7 @@ export default function About () {
               moved to <Translator english='Christchurch' maori='Ōtautahi' />{' '}
               with my partner to continue study in order to earn my Bachelor of
               Information Technology.
-            </p>
+            </div>
           </div>
 
           <div className='space-y-4'>
