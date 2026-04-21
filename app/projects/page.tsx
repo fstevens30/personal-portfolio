@@ -29,7 +29,7 @@ const projects = [
   {
     title: 'Personal Portfolio',
     description: 'This website, a showcase of my work and an online resume.',
-    href: 'https://flynn-stevens.com/',
+    href: 'https://flynnstevens.dev/',
     repo: 'https://github.com/fstevens30/personal-portfolio',
     tech: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Shadcn UI'],
     image: '/images/placeholder.webp',
@@ -49,7 +49,7 @@ const projects = [
     title: 'Ferrostar .NET MAUI',
     description:
       'Cross platform mobile navigation library, port of Ferrostar to work with .NET MAUI.',
-    href: 'https://flynn-stevens.com/blog/ferrostar-maui',
+    href: 'https://flynnstevens.dev/blog/ferrostar-maui',
     repo: '',
     tech: ['C#', '.NET MAUI', 'Ferrostar', 'Android'],
     image: '/images/ferrostar-maui.png',
