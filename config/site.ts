@@ -15,7 +15,6 @@ export const siteConfig = {
   tech: {
     swift: 'Swift',
     typescript: 'TypeScript',
-    react: 'React',
     nextjs: 'Next.js',
     tailwindcss: 'Tailwind CSS',
     supabase: 'Supabase',
