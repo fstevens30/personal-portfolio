@@ -10,7 +10,7 @@ export const siteConfig = {
     github: 'https://github.com/fstevens30',
     linkedin: 'https://www.linkedin.com/in/fstevens30/',
     youtube: 'https://www.youtube.com/@flynnstevens8211',
-    bluesky: 'https://bsky.app/profile/flynn-stevens.com'
+    bluesky: 'https://bsky.app/profile/flynnstevens.dev'
   },
   tech: {
     swift: 'Swift',
