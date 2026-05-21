@@ -15,16 +15,13 @@ export const siteConfig = {
   tech: {
     swift: 'Swift',
     typescript: 'TypeScript',
-    django: 'Django',
     react: 'React',
     nextjs: 'Next.js',
-    html5: 'HTML5',
-    xcode: 'Xcode',
     tailwindcss: 'Tailwind CSS',
     supabase: 'Supabase',
-    css3: 'CSS3',
-    javascript: 'JavaScript',
-    csharp: 'C#'
+    csharp: 'C#',
+    openstreetmap: 'OpenStreetMap',
+    maplibre: 'maplibre'
   }
 }
 
