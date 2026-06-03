@@ -4,8 +4,9 @@ import { SquareArrowOutUpRight } from "@lucide/astro";
 
 const links = {
   github: "https://github.com/fstevens30",
-  bluesky: "https://bsky.app/profile/flynnmcc.bsky.social",
-  linkedin: "https://www.linkedin.com/in/flynn-mccarthy-1a9b4a1b2/",
+  bluesky: "https://bsky.app/profile/flynnstevens.dev",
+  linkedin: "https://www.linkedin.com/in/fstevens30/",
+  twitter: "https://twitter.com/flynnstevens30",
 };
 
 const tech = [
@@ -65,7 +66,8 @@ const tech = [
           rel="noopener noreferrer"
           class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
         >
-          Bluesky ↗
+          Bluesky
+          <SquareArrowOutUpRight size={12} />
         </a>
         <a
           href={links.linkedin}
@@ -73,7 +75,17 @@ const tech = [
           rel="noopener noreferrer"
           class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
         >
-          LinkedIn ↗
+          LinkedIn
+          <SquareArrowOutUpRight size={12} />
+        </a>
+        <a
+          href={links.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
+        >
+          Twitter
+          <SquareArrowOutUpRight size={12} />
         </a>
       </div>
     </section>
