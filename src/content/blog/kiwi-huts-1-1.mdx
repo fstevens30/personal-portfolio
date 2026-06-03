@@ -1,0 +1,36 @@
+---
+title: Kiwi Huts - Update 1.1.0
+description: My first major update to Kiwi Huts
+author: Flynn Stevens
+date: 2025-02-11
+published: true
+---
+I finally managed to find some time over the summer break to work on and publish a new update to my Kiwi Huts app.
+
+## Goals
+My main goals for this update were:
+- Simplify the design of the backend to make it simpler to expand and update in the future.
+- Improve map performance and have more options for accessibility.
+- Migrate the backend from Firebase to Supabase.
+- Utilise my Supabase knowledge to improve backend performance.
+
+The most major part of the update was migrating to Supabase. I used it in a previous project and really enjoyed it. I find it user-friendly and I enjoy it being open-source.
+
+I found it extremely easy to migrate. In a few hours, I had it back up and running with improved performance to boot. Obviously, the performance could have improved in Firebase as well, but I feel I lacked the knowledge to do so.
+
+## Map
+I updated the map to allow for filtering of the data and improved loading times and clustering thanks to UIKit functionality. Users can now filter the huts shown on the map view by the hut type as well as if it has been completed by them or not.
+<p align="center">
+    <img src="/images/kiwi-huts-1-1-0-map.PNG" alt="Updated Map" width="400"/>
+</p>
+
+When migrating to Supabase, I made sure to keep in mind my future plans for the app to allow for a more open-ended design of the backend.
+
+## What’s Next?
+I plan on integrating user accounts to allow for commenting, uploading photos, and reviewing huts. This can lead into achievements and leaderboards as well. I also plan on releasing both an Android and Web version of the application in order to try out more technologies.
+
+<p align="center">
+    <a href="https://apps.apple.com/nz/app/kiwi-huts/id6502030661">
+        <img src="/images/download-image.png" alt="Download Kiwi Huts" width="200"/>
+    </a>
+</p>

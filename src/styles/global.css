@@ -1,3 +1,10 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @variant dark (&:where(.dark, .dark *));
+
+@primary: #4f46e5;
+@primary-hover: #4338ca;
+@primary-active: #3730a3;
+@primary-light: #c7d2fe;
+@primary-dark: #3730a3;
