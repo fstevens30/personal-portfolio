@@ -1,17 +1,116 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import { SquareArrowOutUpRight } from "@lucide/astro";
 
+const links = {
+  github: "https://github.com/fstevens30",
+  bluesky: "https://bsky.app/profile/flynnmcc.bsky.social",
+  linkedin: "https://www.linkedin.com/in/flynn-mccarthy-1a9b4a1b2/",
+};
+
+const tech = [
+  { name: "Swift", icon: "/icons/swift.svg" },
+  { name: "TypeScript", icon: "/icons/typescript.svg" },
+  { name: "Next.js", icon: "/icons/nextjs.svg" },
+  { name: "Tailwind CSS", icon: "/icons/tailwind.svg" },
+  { name: "Supabase", icon: "/icons/supabase.svg" },
+  { name: "C#", icon: "/icons/csharp.svg" },
+  { name: "OpenStreetMap", icon: "/icons/openstreetmap.svg" },
+  { name: "MapLibre", icon: "/icons/maplibre.svg" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Flynn Stevens"
+  description="Junior Software Developer based in Ōtautahi, Aotearoa"
+>
+  <main class="max-w-2xl mx-auto px-4 py-16 md:py-32">
+    <!-- Hero -->
+    <section class="flex flex-col items-center text-center gap-6 pb-16">
+      <img
+        src="/images/profile.jpeg"
+        alt="Flynn Stevens"
+        width="120"
+        height="120"
+        class="rounded-full"
+      />
+      <div class="space-y-2">
+        <h1
+          class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-gray-100"
+        >
+          Kia Ora, I'm Flynn
+        </h1>
+        <p
+          class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-md mx-auto"
+        >
+          Junior Software Developer based in Ōtautahi, Aotearoa. Working on
+          web-based mapping applications and .NET MAUI mobile apps.
+        </p>
+      </div>
+      <div class="flex gap-3 flex-wrap justify-center">
+        <a
+          href={links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
+        >
+          <div class="flex items-center gap-1 justify-center">
+            GitHub
+            <SquareArrowOutUpRight size={12} />
+          </div>
+        </a>
+        <a
+          href={links.bluesky}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
+        >
+          Bluesky ↗
+        </a>
+        <a
+          href={links.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
+        >
+          LinkedIn ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- Study -->
+    <section
+      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-2"
+    >
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
+        Study
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">
+        Recently completed a Bachelor of Information Technology at Ara Institute
+        of Canterbury, specialising in Software Development with distinction.
+      </p>
+    </section>
+
+    <!-- Tech -->
+    <section
+      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
+    >
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
+        Tech
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">
+        Technologies I have experience with and enjoy working with.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+        {
+          tech.map((t) => (
+            <div class="flex items-center gap-2 border border-gray-100 dark:border-gray-800 rounded-md px-3 py-2 text-sm">
+              <img src={t.icon} alt={t.name} width="18" height="18" />
+              <span>{t.name}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

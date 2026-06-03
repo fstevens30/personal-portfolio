@@ -1,0 +1,85 @@
+---
+import { Home, Menu, X } from "lucide-astro";
+
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
+
+const activeClass = "text-gray-900 dark:text-gray-100";
+const inactiveClass = "text-gray-500 dark:text-gray-400";
+
+function linkClass(href: string) {
+  return `text-sm font-medium transition-colors hover:text-gray-900 dark:hover:text-gray-100 ${pathname === href ? activeClass : inactiveClass}`;
+}
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-backdrop-filter:bg-white/60"
+>
+  <div class="max-w-2xl mx-auto px-4 flex h-14 items-center justify-between">
+    <nav class="flex items-center gap-6">
+      <a
+        href="/"
+        class="text-gray-900 dark:text-gray-100 hover:opacity-70 transition-opacity"
+      >
+        <Home size={20} />
+        <span class="sr-only">Home</span>
+      </a>
+      {
+        links.map((link) => (
+          <a href={link.href} class={`hidden sm:block ${linkClass(link.href)}`}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      id="menu-toggle"
+      class="sm:hidden p-2 rounded-md border border-gray-200 dark:border-gray-700"
+      aria-label="Toggle menu"
+    >
+      <Menu size={18} id="menu-icon" />
+      <X size={18} id="close-icon" class="hidden" />
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"
+  >
+    <nav class="max-w-2xl mx-auto px-4 py-4 flex flex-col gap-4">
+      <a
+        href="/"
+        class="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+      >
+        <Home size={16} /> Home
+      </a>
+      {
+        links.map((link) => (
+          <a href={link.href} class={linkClass(link.href)}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = !menu?.classList.contains("hidden");
+    menu?.classList.toggle("hidden", isOpen);
+    menuIcon?.classList.toggle("hidden", !isOpen);
+    closeIcon?.classList.toggle("hidden", isOpen);
+  });
+</script>
