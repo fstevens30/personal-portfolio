@@ -2,6 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import { ArrowRight, SquareArrowOutUpRight } from "@lucide/astro";
 
+const btnBase =
+  "inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors";
+const btnAccent = `${btnBase} bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium`;
+const btnOutline = `${btnBase} border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium`;
+
 const links = {
   github: "https://github.com/fstevens30",
   bluesky: "https://bsky.app/profile/flynnstevens.dev",
@@ -47,63 +52,35 @@ const tech = [
           web-based mapping applications and .NET MAUI mobile apps.
         </p>
       </div>
-      <div class="flex gap-3 flex-wrap justify-center">
-        <a
-          href="#portfolio"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          <span class="flex items-center gap-1 justify-center">
-            View portfolio
-            <ArrowRight size={12} />
-          </span>
+      <div class="flex gap-3 flex-wrap">
+        <a href="/projects" class={btnAccent}>
+          View projects <ArrowRight size={14} />
         </a>
-        <a
-          href="#about"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          More about me
-          <ArrowRight size={12} />
+        <a href="/about" class={btnOutline}>
+          About me <ArrowRight size={14} />
         </a>
       </div>
-      <div class="flex gap-3 flex-wrap justify-center">
-        <a
-          href={links.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          <div class="flex items-center gap-1 justify-center">
-            GitHub
-            <SquareArrowOutUpRight size={12} />
-          </div>
-        </a>
-        <a
-          href={links.bluesky}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          Bluesky
-          <SquareArrowOutUpRight size={12} />
-        </a>
-        <a
-          href={links.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          LinkedIn
-          <SquareArrowOutUpRight size={12} />
-        </a>
-        <a
-          href={links.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-900 dark:text-gray-100"
-        >
-          Twitter
-          <SquareArrowOutUpRight size={12} />
-        </a>
+
+      <!-- Social links -->
+      <p class="text-sm text-gray-400 mt-6">Connect with me</p>
+      <div class="flex gap-3 flex-wrap">
+        {
+          [
+            { href: links.github, label: "GitHub" },
+            { href: links.bluesky, label: "Bluesky" },
+            { href: links.linkedin, label: "LinkedIn" },
+            { href: links.twitter, label: "Twitter" },
+          ].map(({ href, label }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={btnOutline}
+            >
+              {label} <SquareArrowOutUpRight size={12} />
+            </a>
+          ))
+        }
       </div>
     </section>
 

@@ -30,7 +30,11 @@ const { Content } = await render(post);
           })
         }
       </span>
-      <h1 class="font-black text-3xl lg:text-4xl">{post.data.title}</h1>
+      <h1
+        class="font-semibold text-3xl lg:text-4xl tracking-tight text-gray-900 dark:text-gray-100"
+      >
+        {post.data.title}
+      </h1>
       {
         post.data.description && (
           <p class="text-gray-500 dark:text-gray-400">

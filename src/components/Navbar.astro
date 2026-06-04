@@ -9,8 +9,10 @@ const links = [
   { href: "/blog", label: "Blog" },
 ];
 
-const activeClass = "text-gray-900 dark:text-gray-100";
-const inactiveClass = "text-gray-500 dark:text-gray-400";
+const activeClass =
+  "text-gray-900 dark:text-gray-100 underline underline-offset-4";
+const inactiveClass =
+  "text-gray-500 dark:text-gray-400 hover:underline hover:underline-offset-4";
 
 function linkClass(href: string) {
   return `text-sm font-medium transition-colors hover:text-gray-900 dark:hover:text-gray-100 ${pathname === href ? activeClass : inactiveClass}`;
