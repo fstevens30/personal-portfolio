@@ -1,11 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
 import { ArrowRight, SquareArrowOutUpRight } from "@lucide/astro";
-
-const btnBase =
-  "inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors";
-const btnAccent = `${btnBase} bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium`;
-const btnOutline = `${btnBase} border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium`;
 
 const links = {
   github: "https://github.com/fstevens30",
@@ -56,18 +52,14 @@ const tech = [
           web-based mapping applications and cross-platform mobile apps.
         </p>
       </div>
-      <div class="flex gap-3 flex-wrap">
-        <a href="/projects" class={btnAccent}>
-          View projects <ArrowRight size={14} />
-        </a>
-        <a href="/about" class={btnOutline}>
-          About me <ArrowRight size={14} />
-        </a>
+      <div class="flex gap-1 flex-wrap">
+        <Button href="/projects" text="See my projects" primary={true} />
+        <Button href="/blog" text="Read my blog" primary={false} />
       </div>
 
       <!-- Social links -->
       <p class="text-sm text-gray-400 mt-6">Connect with me</p>
-      <div class="flex gap-3 flex-wrap">
+      <div class="flex gap-1 flex-wrap">
         {
           [
             { href: links.github, label: "GitHub" },
@@ -75,14 +67,12 @@ const tech = [
             { href: links.linkedin, label: "LinkedIn" },
             { href: links.twitter, label: "Twitter" },
           ].map(({ href, label }) => (
-            <a
+            <Button
               href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={btnOutline}
-            >
-              {label} <SquareArrowOutUpRight size={12} />
-            </a>
+              text={label}
+              primary={false}
+              isExternal={true}
+            />
           ))
         }
       </div>
@@ -128,8 +118,9 @@ const tech = [
             rel="noopener noreferrer"
             class="text-primary-500 hover:underline"
           >
-            WakaTime profile
-          </a>.
+            WakaTime
+          </a>
+          profile.
         </p>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
           {

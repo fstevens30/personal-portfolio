@@ -1,0 +1,32 @@
+---
+import { SquareArrowOutUpRight } from "@lucide/astro";
+
+interface ButtonProps {
+  href: string;
+  text: string;
+  primary?: boolean;
+  isExternal?: boolean;
+}
+
+const {
+  href,
+  text,
+  primary = false,
+  isExternal = false,
+} = Astro.props as ButtonProps;
+---
+
+<a
+  target="_blank"
+  rel="noopener noreferrer"
+  href={href}
+  class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors ${
+    primary
+      ? "bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium"
+      : "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium"
+  }`}
+>
+  <span>{text}</span>
+  {isExternal && <SquareArrowOutUpRight size={12} />}
+</a>
+---
