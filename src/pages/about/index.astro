@@ -1,0 +1,15 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Map from "../../components/Map.astro";
+---
+
+<Layout title="Map">
+  <main class="max-w-2xl mx-auto px-4 py-16 md:py-32">
+    <h1
+      class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-gray-100 mb-8"
+    >
+      Map Example
+    </h1>
+    <Map latitude={-43} longitude={170} zoom={4} />
+  </main>
+</Layout>
