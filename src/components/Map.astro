@@ -3,21 +3,8 @@ interface Props {
   latitude?: number;
   longitude?: number;
   zoom?: number;
-  style?: string;
 }
-
 const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
-
-declare global {
-  interface Window {
-    __mapConfig: {
-      latitude: number;
-      longitude: number;
-      zoom: number;
-      style: string;
-    };
-  }
-}
 ---
 
 <div id="map" style="width: 100%; height: 400px;"></div>
@@ -27,52 +14,29 @@ declare global {
 />
 
 <script define:vars={{ latitude, longitude, zoom }}>
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  window.__mapConfig = {
-    latitude,
-    longitude,
-    zoom,
-    style: prefersDark
-      ? "https://tiles.openfreemap.org/styles/dark"
-      : "https://tiles.openfreemap.org/styles/bright",
-    // style: {
-    //   version: 8,
-    //   sources: {
-    //     satellite: {
-    //       type: "raster",
-    //       tiles: [
-    //         "https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    //         "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    //         "https://mt2.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    //         "https://mt3.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    //       ],
-    //       tileSize: 256,
-    //     },
-    //     // ── Elevation data ──────────────────────────
-    //     terrarium: {
-    //       type: "raster-dem",
-    //       tiles: [
-    //         "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
-    //       ],
-    //       tileSize: 256,
-    //       encoding: "terrarium",
-    //     },
-    //   },
-    //   layers: [{ id: "satellite", type: "raster", source: "satellite" }],
-    //   // ── Enable 3D terrain from elevation source ──
-    //   terrain: { source: "terrarium", exaggeration: 1.5 },
-    // },
-  };
+  window.__mapConfig = { latitude, longitude, zoom };
 </script>
 
 <script>
   import maplibregl from "maplibre-gl";
 
-  const { latitude, longitude, zoom, style } = (window as any).__mapConfig;
+  const { latitude, longitude, zoom } = (window as any).__mapConfig;
+
+  const points: [number, number][] = [
+    [168.347, -46.4118], // Invercargill
+    [173.2838, -41.2743], // Nelson
+    [172.6366, -43.5309], // Christchurch
+  ];
+
+  function getMapStyle() {
+    return document.documentElement.classList.contains("dark")
+      ? "https://tiles.openfreemap.org/styles/dark"
+      : "https://tiles.openfreemap.org/styles/bright";
+  }
 
   const map = new maplibregl.Map({
     container: "map",
-    style,
+    style: getMapStyle(),
     center: [longitude, latitude],
     zoom,
   });
@@ -87,15 +51,60 @@ declare global {
   );
   map.addControl(new maplibregl.ScaleControl());
 
-new maplibregl.Marker({ color: "grey" })
-  .setLngLat([168.3470, -46.4118])
-  .addTo(map);
+  new maplibregl.Marker({ color: "grey" })
+    .setLngLat([168.347, -46.4118])
+    .addTo(map);
+  new maplibregl.Marker({ color: "grey" })
+    .setLngLat([173.2838, -41.2743])
+    .addTo(map);
+  new maplibregl.Marker({ color: "#facc15" })
+    .setLngLat([172.6366, -43.5309])
+    .addTo(map);
 
-new maplibregl.Marker({ color: "grey" })
-  .setLngLat([173.2838, -41.2743])
-  .addTo(map);
+  function addLayers() {
+    if (!map.getSource("route")) {
+      map.addSource("route", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+          geometry: {
+            type: "LineString",
+            coordinates: points,
+          },
+          properties: {},
+        },
+      });
+    }
 
-new maplibregl.Marker({ color: "#facc15" })
-  .setLngLat([172.6366, -43.5309])
-  .addTo(map);
+    if (!map.getLayer("route-line")) {
+      map.addLayer({
+        id: "route-line",
+        type: "line",
+        source: "route",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#facc15",
+          "line-width": 2,
+          "line-dasharray": [2, 2],
+        },
+      });
+    }
+  }
+
+  map.on("load", addLayers);
+
+  // Re-add layers after theme swap
+  map.on("style.load", addLayers);
+
+  const observer = new MutationObserver(() => {
+    map.setStyle(getMapStyle());
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 </script>
