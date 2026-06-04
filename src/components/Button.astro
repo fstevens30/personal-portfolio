@@ -6,6 +6,7 @@ interface ButtonProps {
   text: string;
   primary?: boolean;
   isExternal?: boolean;
+  disabled?: boolean;
 }
 
 const {
@@ -13,20 +14,35 @@ const {
   text,
   primary = false,
   isExternal = false,
+  disabled = false,
 } = Astro.props as ButtonProps;
 ---
 
-<a
-  target="_blank"
-  rel="noopener noreferrer"
-  href={href}
-  class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors ${
-    primary
-      ? "bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium"
-      : "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium"
-  }`}
->
-  <span>{text}</span>
-  {isExternal && <SquareArrowOutUpRight size={12} />}
-</a>
----
+{
+  disabled ? (
+    <span
+      class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md cursor-not-allowed ${
+        primary
+          ? "bg-primary-300 text-primary-500"
+          : "border border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600"
+      }`}
+    >
+      <span>{text}</span>
+      {isExternal && <SquareArrowOutUpRight size={12} />}
+    </span>
+  ) : (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors ${
+        primary
+          ? "bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium"
+          : "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium"
+      }`}
+    >
+      <span>{text}</span>
+      {isExternal && <SquareArrowOutUpRight size={12} />}
+    </a>
+  )
+}
