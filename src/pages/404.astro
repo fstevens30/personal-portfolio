@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ArrowRight } from "@lucide/astro";
+
+const btnBase =
+  "inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors";
+const btnAccent = `${btnBase} bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium`;
+---
+
+<Layout
+  title="Page Not Found"
+  description="The page you are looking for does not exist."
+>
+  <main class="max-w-2xl mx-auto px-4 py-16 md:py-32 text-center">
+    <h1
+      class="font-semibold text-gray-900 dark:text-gray-100 mb-8 text-4xl tracking-tight"
+    >
+      404
+    </h1>
+    <p class="text-lg text-gray-500 dark:text-gray-400 mb-8">
+      Oops! The page you're looking for doesn't exist.
+    </p>
+    <a href="/" class={btnAccent}>
+      Go back home <ArrowRight size={14} />
+    </a>
+  </main>
+</Layout>
