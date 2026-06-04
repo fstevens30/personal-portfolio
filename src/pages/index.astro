@@ -17,12 +17,16 @@ const links = {
 const tech = [
   { name: "Swift", icon: "/icons/swift.svg" },
   { name: "TypeScript", icon: "/icons/typescript.svg" },
+  { name: "Bun", icon: "/icons/bun.svg" },
   { name: "Next.js", icon: "/icons/nextjs.svg" },
+  { name: "PostgreSQL", icon: "/icons/postgresql.svg" },
   { name: "Tailwind CSS", icon: "/icons/tailwind.svg" },
   { name: "Supabase", icon: "/icons/supabase.svg" },
+  { name: "Git", icon: "/icons/git.svg" },
   { name: "C#", icon: "/icons/csharp.svg" },
   { name: "OpenStreetMap", icon: "/icons/openstreetmap.svg" },
   { name: "MapLibre", icon: "/icons/maplibre.svg" },
+  { name: "Docker", icon: "/icons/docker.svg" },
 ];
 ---
 
@@ -49,7 +53,7 @@ const tech = [
           class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-md mx-auto"
         >
           Junior Software Developer based in Ōtautahi, Aotearoa. Working on
-          web-based mapping applications and .NET MAUI mobile apps.
+          web-based mapping applications and cross-platform mobile apps.
         </p>
       </div>
       <div class="flex gap-3 flex-wrap">
@@ -85,50 +89,61 @@ const tech = [
     </section>
 
     <section
-      id="portfolio"
-      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-2 scroll-mt-24"
-    >
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
-        Portfolio
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        A few kinds of work I like to build: web mapping applications, mobile
-        apps, and polished front-end systems.
-      </p>
-    </section>
-
-    <section
-      id="about"
-      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-2 scroll-mt-24"
-    >
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
-        About
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        Recently completed a Bachelor of Information Technology at Ara Institute
-        of Canterbury, specialising in Software Development with distinction.
-      </p>
-    </section>
-
-    <section
       class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
     >
       <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
-        Tech
+        About Me
       </h2>
       <p class="text-gray-600 dark:text-gray-400">
-        Technologies I have experience with and enjoy working with.
+        I enjoying working with web and mobile technologies, as well as mapping
+        and geospatial tools. I enjoy learning new technologies and solving
+        problems.
       </p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-        {
-          tech.map((t) => (
-            <div class="flex items-center gap-2 border border-gray-100 dark:border-gray-800 rounded-md px-3 py-2 text-sm">
-              <img src={t.icon} alt={t.name} width="36" height="36" />
-              <span class="text-gray-900 dark:text-gray-100">{t.name}</span>
-            </div>
-          ))
-        }
-      </div>
+      <p class="text-gray-600 dark:text-gray-400">
+        I am a Junior Software Developer at{" "}
+        <a
+          href="https://madcapdairysoftware.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary-500 hover:underline"
+        >
+          Contec Group International
+        </a>
+        , where I work on mapping applications for the dairy industry.
+      </p>
+
+      <section
+        class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
+      >
+        <h2
+          class="text-sm font-semibold uppercase tracking-widest text-gray-400"
+        >
+          Tech
+        </h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Technologies I am most familair with and enjoy the most. To see what I
+          use most day-to-day, check out my{" "}<a
+            href="https://wakatime.com/@fstevens30"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary-500 hover:underline"
+          >
+            WakaTime profile
+          </a>.
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+          {
+            tech.map((t) => (
+              <div class="flex flex-col items-center gap-1 p-4">
+                <img src={t.icon} alt={t.name} class="w-16 h-16" />
+                <span class="text-sm text-gray-700 dark:text-gray-300">
+                  {t.name}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
     </section>
   </main>
 </Layout>
