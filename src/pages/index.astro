@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
-import { ArrowRight, SquareArrowOutUpRight } from "@lucide/astro";
 
 const links = {
   github: "https://github.com/fstevens30",
@@ -9,6 +8,13 @@ const links = {
   linkedin: "https://www.linkedin.com/in/fstevens30/",
   twitter: "https://twitter.com/flynnstevens30",
 };
+
+const socialLinks = [
+  { href: links.github, label: "GitHub", icon: "/icons/github.svg" },
+  { href: links.bluesky, label: "Bluesky", icon: "/icons/bluesky.svg" },
+  { href: links.linkedin, label: "LinkedIn", icon: "/icons/linkedin.svg" },
+  { href: links.twitter, label: "Twitter", icon: "/icons/twitter.svg" },
+];
 
 const tech = [
   { name: "Swift", icon: "/icons/swift.svg" },
@@ -52,27 +58,30 @@ const tech = [
           web-based mapping applications and cross-platform mobile apps.
         </p>
       </div>
-      <div class="flex gap-1 flex-wrap">
+      <div class="flex gap-2 flex-wrap justify-center">
         <Button href="/projects" text="See my projects" primary={true} />
         <Button href="/blog" text="Read my blog" primary={false} />
       </div>
 
       <!-- Social links -->
       <p class="text-sm text-gray-400 mt-6">Connect with me</p>
-      <div class="flex gap-1 flex-wrap">
+      <div class="flex gap-2 flex-wrap justify-center">
         {
-          [
-            { href: links.github, label: "GitHub" },
-            { href: links.bluesky, label: "Bluesky" },
-            { href: links.linkedin, label: "LinkedIn" },
-            { href: links.twitter, label: "Twitter" },
-          ].map(({ href, label }) => (
-            <Button
+          socialLinks.map(({ href, label, icon }) => (
+            <a
               href={href}
-              text={label}
-              primary={false}
-              isExternal={true}
-            />
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border border-gray-200 dark:border-gray-700"
+              aria-label={label}
+            >
+              <img 
+                src={icon} 
+                alt={label} 
+                class="w-6 h-6 dark:invert" 
+                loading="lazy"
+              />
+            </a>
           ))
         }
       </div>
@@ -101,40 +110,40 @@ const tech = [
         </a>
         , where I work on mapping applications for the dairy industry.
       </p>
+    </section>
 
-      <section
-        class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
+    <section
+      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
+    >
+      <h2
+        class="text-sm font-semibold uppercase tracking-widest text-gray-400"
       >
-        <h2
-          class="text-sm font-semibold uppercase tracking-widest text-gray-400"
+        Tech
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">
+        Technologies I am most familiar with and enjoy the most. To see what I
+        use most day-to-day, check out my{" "}<a
+          href="https://wakatime.com/@fstevens30"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary-500 hover:underline"
         >
-          Tech
-        </h2>
-        <p class="text-gray-600 dark:text-gray-400">
-          Technologies I am most familair with and enjoy the most. To see what I
-          use most day-to-day, check out my{" "}<a
-            href="https://wakatime.com/@fstevens30"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary-500 hover:underline"
-          >
-            WakaTime
-          </a>
-          profile.
-        </p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-          {
-            tech.map((t) => (
-              <div class="flex flex-col items-center gap-1 p-4">
-                <img src={t.icon} alt={t.name} class="w-16 h-16" />
-                <span class="text-sm text-gray-700 dark:text-gray-300">
-                  {t.name}
-                </span>
-              </div>
-            ))
-          }
-        </div>
-      </section>
+          WakaTime
+        </a>
+        profile.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+        {
+          tech.map((t) => (
+            <div class="flex flex-col items-center gap-1 p-4">
+              <img src={t.icon} alt={t.name} class="w-16 h-16" />
+              <span class="text-sm text-gray-700 dark:text-gray-300">
+                {t.name}
+              </span>
+            </div>
+          ))
+        }
+      </div>
     </section>
   </main>
 </Layout>
