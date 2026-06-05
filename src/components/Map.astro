@@ -1,0 +1,100 @@
+---
+interface Props {
+  latitude?: number;
+  longitude?: number;
+  zoom?: number;
+}
+const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
+---
+
+<div class="rounded-md" id="map" style="width: 100%; height: 400px;"></div>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
+/>
+
+<script define:vars={{ latitude, longitude, zoom }}>
+  window.__mapConfig = { latitude, longitude, zoom };
+</script>
+
+<script>
+  import maplibregl from "maplibre-gl";
+
+  const { latitude, longitude, zoom } = (window as any).__mapConfig;
+
+  const points: [number, number][] = [
+    [168.347, -46.4118], // Invercargill
+    [173.2838, -41.2743], // Nelson
+    [172.6366, -43.5309], // Christchurch
+  ];
+
+  function getMapStyle() {
+    return document.documentElement.classList.contains("dark")
+      ? "https://tiles.openfreemap.org/styles/dark"
+      : "https://tiles.openfreemap.org/styles/bright";
+  }
+
+  const map = new maplibregl.Map({
+    container: "map",
+    style: getMapStyle(),
+    center: [longitude, latitude],
+    zoom,
+  });
+
+  new maplibregl.Marker({ color: "grey" })
+    .setLngLat([168.347, -46.4118])
+    .addTo(map);
+  new maplibregl.Marker({ color: "grey" })
+    .setLngLat([173.2838, -41.2743])
+    .addTo(map);
+  new maplibregl.Marker({ color: "#facc15" })
+    .setLngLat([172.6366, -43.5309])
+    .addTo(map);
+
+  function addLayers() {
+    if (!map.getSource("route")) {
+      map.addSource("route", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+          geometry: {
+            type: "LineString",
+            coordinates: points,
+          },
+          properties: {},
+        },
+      });
+    }
+
+    if (!map.getLayer("route-line")) {
+      map.addLayer({
+        id: "route-line",
+        type: "line",
+        source: "route",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#facc15",
+          "line-width": 2,
+          "line-dasharray": [2, 2],
+        },
+      });
+    }
+  }
+
+  map.on("load", addLayers);
+
+  // Re-add layers after theme swap
+  map.on("style.load", addLayers);
+
+  const observer = new MutationObserver(() => {
+    map.setStyle(getMapStyle());
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+</script>

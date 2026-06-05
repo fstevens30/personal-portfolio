@@ -1,0 +1,119 @@
+---
+import { Home, Menu, X, Sun, Moon } from "lucide-astro";
+
+const pathname = Astro.url.pathname;
+const links = [
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
+const activeClass =
+  "text-gray-900 dark:text-gray-100 underline underline-offset-4";
+const inactiveClass =
+  "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline hover:underline-offset-4";
+
+function linkClass(href: string) {
+  const isHome = href === "/";
+  const isActive = isHome ? pathname === "/" : pathname.startsWith(href);
+  return `text-sm font-medium transition-colors ${isActive ? activeClass : inactiveClass}`;
+}
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-backdrop-filter:bg-white/60"
+>
+  <div class="max-w-2xl mx-auto px-4 flex h-14 items-center justify-between">
+    <nav class="flex items-center gap-6">
+      <a
+        href="/"
+        class="text-gray-900 dark:text-gray-100 hover:opacity-70
+      transition-opacity"
+      >
+        <Home size={20} />
+        <span class="sr-only">Home</span>
+      </a>
+      {
+        links.map((link) => (
+          <a href={link.href} class={`hidden sm:block ${linkClass(link.href)}`}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="text-gray-900 dark:text-gray-100 hover:opacity-70
+      transition-opacity p-2"
+        aria-label="Toggle theme"
+      >
+        <Sun size={18} id="sun-icon" class="hidden dark:block" />
+        <Moon size={18} id="moon-icon" class="dark:hidden" />
+      </button>
+      <button
+        id="menu-toggle"
+        type="button"
+        class="sm:hidden text-gray-900 dark:text-gray-100 hover:opacity-70
+      transition-opacity p-2"
+        aria-label="Toggle menu"
+      >
+        <Menu size={18} id="menu-icon" />
+        <X size={18} id="close-icon" class="hidden" />
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"
+  >
+    <nav class="max-w-2xl mx-auto px-4 py-4 flex flex-col gap-4">
+      <a
+        href="/"
+        class="flex items-center gap-2 text-sm font-medium text-gray-600
+      dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+      >
+        <Home size={16} /> Home
+      </a>
+      {
+        links.map((link) => (
+          <a href={link.href} class={linkClass(link.href)}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  toggle?.addEventListener("click", () => {
+    const isHidden = menu?.classList.toggle("hidden");
+    menuIcon?.classList.toggle("hidden", !isHidden);
+    closeIcon?.classList.toggle("hidden", isHidden);
+  });
+
+  // Theme toggle logic
+  const themeToggle = document.getElementById("theme-toggle");
+  
+  const applyTheme = () => {
+    const saved = localStorage.getItem("theme");
+    const isDark = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.classList.toggle("dark", isDark);
+  };
+
+  applyTheme();
+
+  themeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>
