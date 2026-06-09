@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { Rss } from "lucide-astro";
 
 const POSTS_PER_PAGE = 10;
 
@@ -32,68 +33,80 @@ const displayPosts = sortedPosts.slice(
         class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
       >
         Blog
-        <p class="text-gray-500 dark:text-gray-400 text-lg font-semibold mt-2">
-          A collection of my random thoughts and ideas.
-        </p>
-      </h1>
+        <div class="flex items-center space-between gap-2 my-2">
+          <p class="text-gray-500 dark:text-gray-400 text-lg font-semibold">
+            A collection of my random thoughts and ideas.
+          </p>
+          <a
+            href="/rss.xml"
+            class="ml-auto p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border border-gray-200 dark:border-gray-700"
+            aria-label="RSS feed"
+          >
+            <Rss size={18} class="text-gray-900 dark:text-gray-100" />
+          </a>
+        </div>
 
-      <hr class="border-gray-200 dark:border-gray-800 mb-8" />
+        <hr class="border-gray-200 dark:border-gray-800 mb-8" />
 
-      {
-        displayPosts.length > 0 ? (
-          <ul class="flex flex-col divide-y divide-gray-100 dark:divide-gray-800">
-            {displayPosts.map((post) => (
-              <li class="py-6">
-                <a href={`/blog/${post.id}`} class="group flex flex-col gap-1">
-                  <span class="text-sm text-gray-400 dark:text-gray-500">
-                    {post.data.date.toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <h2 class="font-semibold text-lg group-hover:underline transition-colors text-gray-900 dark:text-gray-100">
-                    {post.data.title}
-                  </h2>
-                  {post.data.description && (
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">
-                      {post.data.description}
-                    </p>
-                  )}
+        {
+          displayPosts.length > 0 ? (
+            <ul class="flex flex-col divide-y divide-gray-100 dark:divide-gray-800">
+              {displayPosts.map((post) => (
+                <li class="py-6">
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="group flex flex-col gap-1"
+                  >
+                    <span class="text-sm text-gray-400 dark:text-gray-500">
+                      {post.data.date.toLocaleDateString("en-NZ", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                    <h2 class="font-semibold text-lg group-hover:underline transition-colors text-gray-900 dark:text-gray-100">
+                      {post.data.title}
+                    </h2>
+                    {post.data.description && (
+                      <p class="text-gray-500 dark:text-gray-400 text-sm">
+                        {post.data.description}
+                      </p>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="text-gray-500">No posts yet, check back later.</p>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <div class="flex justify-end gap-2 mt-8">
+              {page > 1 && (
+                <a
+                  href={`/blog?page=${page - 1}`}
+                  class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  ← Prev
                 </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="text-gray-500">No posts yet, check back later.</p>
-        )
-      }
-
-      {
-        totalPages > 1 && (
-          <div class="flex justify-end gap-2 mt-8">
-            {page > 1 && (
-              <a
-                href={`/blog?page=${page - 1}`}
-                class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                ← Prev
-              </a>
-            )}
-            <span class="px-3 py-1.5 text-sm text-gray-500">
-              {page} / {totalPages}
-            </span>
-            {page < totalPages && (
-              <a
-                href={`/blog?page=${page + 1}`}
-                class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                Next →
-              </a>
-            )}
-          </div>
-        )
-      }
+              )}
+              <span class="px-3 py-1.5 text-sm text-gray-500">
+                {page} / {totalPages}
+              </span>
+              {page < totalPages && (
+                <a
+                  href={`/blog?page=${page + 1}`}
+                  class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  Next →
+                </a>
+              )}
+            </div>
+          )
+        }
+      </h1>
     </div>
   </main>
 </Layout>
