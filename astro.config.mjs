@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import AstroPWA from "@vite-pwa/astro";
 import mdx from "@astrojs/mdx";
 import rehypeExternalLinks from "rehype-external-links";
+import cloudflare from "@astrojs/cloudflare";
 
 const externalLinks = [
   rehypeExternalLinks,
@@ -10,6 +11,8 @@ const externalLinks = [
 ];
 
 export default defineConfig({
+  output: "static",
+  adapter: cloudflare(),
   site: "https://flynnstevens.dev",
   vite: {
     plugins: [tailwindcss()],
