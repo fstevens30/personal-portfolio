@@ -1,0 +1,35 @@
+A few years ago I got a Synology NAS to store my media and other important files. After watching a few YouTube videos about home-labbing, I became curious. So I decided to dive in and try it out.
+
+## The Plan
+
+I wanted to try out the [Arr](https://wiki.servarr.com/) stack with [Jellyfin](https://jellyfin.org/). I had previously used [Plex](https://www.plex.tv/your-media/) on the NAS installed directly, but I wanted to use Docker and more open source. I also wanted to try out a bunch more software, like [Home Assistant](https://www.home-assistant.io/), for home automation and [Pi-hole](https://pi-hole.net/) for network wide ad-blocking.
+
+## The Problem
+
+My NAS is quite underpowered for running all of these containers, after trying out a few of them, my NAS was already running well above 90% CPU and RAM usage. It was pretty clear I'd need some more powerful hardware. It often caused massive lags on the system.
+
+## The Solution
+
+A ex-business mini PC. This would run all of my containers and be the center of my home-lab. My NAS would now only be used for storage, it's intended purpose. I found the perfect candidate second-hand for a great deal - the HP ProDesk.
+
+My model has a i5 9500T chipset which is plenty powerful and modern enough for transcoding media efficiently for Jellyfin. It also has 16GB of RAM which is great and gives me plenty of headroom. The best part is the compactness of the unit and that it sips power, perfect for a home-lab.
+
+![HP ProDesk](/images/pro-desk.jpg)
+**HP ProDesk**
+
+## The Results
+
+It's amazing. I now have the headroom to run so much software locally that saves me from the might of big tech. My favorite part is funnily enough the [Glance](https://github.com/glanceapp/glance) dashboard I have running, you can read more about it [here](https://github.com/fstevens30/glance-dashboard-config).
+
+![My Containers](/images/my-containers.png)
+**My containers, seen in my Glance dashboard**
+
+The [Cloudflare Tunnel](https://developers.cloudflare.com/tunnel/) is also really handy and lets me securely access some of my services from anywhere with an internet connection.
+
+## The Future
+
+I am hoping that hardware prices will soon come back to Earth, as currently I only have 4TB of storage on my NAS. It would be nice to have closer to 20TB so I can store all of my photos and other documents rather than relying on external services. I'd love to try out [Immich](https://immich.app/) too.
+
+I also need to tidy up the physical space that the home-lab is in. You'll notice I have no photos here of what my home-lab looks like, there is a reason for that. I want to get some nice small shelving so I can set it all up nicely and label all of my cables.
+
+Overall I'm really enjoying this hobby and I'm learning so much from it. I highly recommend you try out home-labbing if you are interested at all too. You'd be surpirsied what you can self host and how great the end user experience is.
