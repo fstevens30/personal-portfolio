@@ -49,3 +49,10 @@ const { Content } = await render(post);
     </article>
   </main>
 </Layout>
+
+<script>
+  document.querySelectorAll("article a[href^='http']").forEach((link) => {
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+  });
+</script>
