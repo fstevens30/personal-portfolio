@@ -664,7 +664,7 @@
   }
 
   .article-frame {
-    width: min(100%, 62rem);
+    width: min(100%, var(--page-max));
     margin-inline: auto;
     padding: var(--space-3xl) var(--page-gutter) 0;
   }
@@ -685,28 +685,6 @@
     max-width: 60ch;
     color: var(--color-ink-2);
     font-size: var(--text-md);
-  }
-
-  .article-prose {
-    max-width: var(--reading-measure);
-    margin: var(--space-xl) 0 0 auto;
-    color: var(--color-ink-2);
-    font-family: var(--font-body);
-  }
-
-  .article-prose :where(h1, h2, h3, h4) {
-    color: var(--color-ink);
-    font-family: var(--font-display);
-    font-style: normal;
-  }
-
-  .article-prose :where(a) {
-    color: var(--color-ink);
-    text-decoration-color: var(--color-accent-strong);
-  }
-
-  .article-prose :where(code) {
-    font-family: var(--font-outlier);
   }
 
   .about-journey {
@@ -837,6 +815,45 @@
     color: var(--color-ink-2);
     font-size: var(--text-md);
   }
+}
+
+.prose.article-prose {
+  --tw-prose-body: var(--color-ink-2);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-ink-2);
+  --tw-prose-links: var(--color-ink);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-muted);
+  --tw-prose-hr: var(--color-rule);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-accent-strong);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-kbd: var(--color-ink);
+  --tw-prose-code: var(--color-ink);
+  --tw-prose-pre-code: var(--color-ink-2);
+  --tw-prose-pre-bg: var(--color-paper-2);
+  --tw-prose-th-borders: var(--color-rule);
+  --tw-prose-td-borders: var(--color-rule);
+  max-width: none;
+  margin: var(--space-xl) 0 0;
+  color: var(--color-ink-2);
+  font-family: var(--font-body);
+}
+
+.article-prose :where(h1, h2, h3, h4) {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-style: normal;
+}
+
+.article-prose :where(a) {
+  color: var(--color-ink);
+  text-decoration-color: var(--color-accent-strong);
+}
+
+.article-prose :where(code) {
+  font-family: var(--font-outlier);
 }
 
 @media (max-width: 64rem) {
