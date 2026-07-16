@@ -1,32 +1,43 @@
 ---
-import { SquareArrowOutUpRight } from "@lucide/astro";
+import {
+  CircleAlert,
+  CircleCheck,
+  LoaderCircle,
+  SquareArrowOutUpRight,
+} from "@lucide/astro";
 
 interface ButtonProps {
-  href: string;
+  href?: string;
   text: string;
   primary?: boolean;
   isExternal?: boolean;
   disabled?: boolean;
+  state?: "default" | "loading" | "error" | "success";
 }
 
 const {
-  href,
+  href = "",
   text,
   primary = false,
   isExternal = false,
   disabled = false,
+  state = "default",
 } = Astro.props as ButtonProps;
+
+const isUnavailable = disabled || state === "loading";
+const stateLabel = state === "default" ? text : `${text} — ${state}`;
 ---
 
 {
-  disabled ? (
+  isUnavailable ? (
     <span
-      class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md cursor-not-allowed ${
-        primary
-          ? "bg-primary-300 text-primary-500"
-          : "border border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600"
-      }`}
+      class={`button ${primary ? "button--primary" : "button--secondary"}`}
+      aria-disabled="true"
+      aria-busy={state === "loading" ? "true" : undefined}
+      aria-label={stateLabel}
+      data-state={state}
     >
+      {state === "loading" && <LoaderCircle size={14} aria-hidden="true" />}
       <span>{text}</span>
       {isExternal && <SquareArrowOutUpRight size={12} />}
     </span>
@@ -35,12 +46,12 @@ const {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      class={`inline-flex items-center gap-1.5 px-4 py-1.5 text-sm rounded-md transition-colors ${
-        primary
-          ? "bg-primary-500 hover:bg-primary-600 text-primary-950 font-medium"
-          : "border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium"
-      }`}
+      class={`button ${primary ? "button--primary" : "button--secondary"}`}
+      aria-label={stateLabel}
+      data-state={state}
     >
+      {state === "error" && <CircleAlert size={14} aria-hidden="true" />}
+      {state === "success" && <CircleCheck size={14} aria-hidden="true" />}
       <span>{text}</span>
       {isExternal && <SquareArrowOutUpRight size={12} />}
     </a>

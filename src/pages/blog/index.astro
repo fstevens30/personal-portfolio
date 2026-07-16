@@ -2,108 +2,88 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { Rss } from "@lucide/astro";
+import { Rss } from "lucide-astro";
 
 const POSTS_PER_PAGE = 10;
-
 const page = Number(Astro.url.searchParams.get("page")) || 1;
-
 const allPosts = await getCollection(
   "blog",
   ({ data }: { data: CollectionEntry<"blog">["data"] }) => data.published,
 );
-
-const sortedPosts: CollectionEntry<"blog">[] = allPosts.sort(
-  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-    b.data.date.valueOf() - a.data.date.valueOf(),
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-
 const displayPosts = sortedPosts.slice(
   (page - 1) * POSTS_PER_PAGE,
   page * POSTS_PER_PAGE,
 );
 ---
 
-<Layout title="Blog — Flynn Stevens">
-  <main class="max-w-2xl mx-auto px-4 py-16">
-    <div class="space-y-2 mb-8">
-      <h1
-        class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
-      >
-        Blog
-      </h1>
-      <div class="flex items-center space-between gap-2 my-2">
-        <p class="text-gray-500 dark:text-gray-400 text-lg font-semibold">
-          A collection of my random thoughts and ideas.
+<Layout
+  title="Writing — Flynn Stevens"
+  description="Notes on software, mapping, mobile development, and personal projects."
+>
+  <main class="page-frame blog-archive">
+    <header class="page-intro">
+      <h1 class="page-title">Field notes</h1>
+      <div>
+        <p class="page-lede">
+          Notes on software, mapping, mobile development, and the things I learn
+          while building.
         </p>
-        <a
-          href="/rss.xml"
-          class="ml-auto p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border border-gray-200 dark:border-gray-700"
-          aria-label="RSS feed"
-        >
-          <Rss size={18} class="text-gray-900 dark:text-gray-100" />
+        <a class="text-link" href="/rss.xml">
+          <Rss size={15} aria-hidden="true" /> Subscribe via RSS
         </a>
       </div>
+    </header>
 
-      <hr class="border-gray-200 dark:border-gray-800 mb-8" />
-
-      {
-        displayPosts.length > 0 ? (
-          <ul class="flex flex-col divide-y divide-gray-100 dark:divide-gray-800">
-            {displayPosts.map((post) => (
-              <li class="py-6">
-                <a href={`/blog/${post.id}`} class="group flex flex-col gap-1">
-                  <span class="text-sm text-gray-400 dark:text-gray-500">
-                    {post.data.date.toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <h2 class="font-semibold text-lg group-hover:underline transition-colors text-gray-900 dark:text-gray-100">
-                    {post.data.title}
-                  </h2>
-                  {post.data.description && (
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">
-                      {post.data.description}
-                    </p>
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="text-gray-500">No posts yet, check back later.</p>
-        )
-      }
-
-      {
-        totalPages > 1 && (
-          <div class="flex justify-end gap-2 mt-8">
-            {page > 1 && (
-              <a
-                href={`/blog?page=${page - 1}`}
-                class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                ← Prev
+    {
+      displayPosts.length > 0 ? (
+        <ol class="archive-list">
+          {displayPosts.map((post) => (
+            <li class="archive-entry">
+              <time class="metadata" datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString("en-NZ", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <a href={`/blog/${post.id}`} class="archive-entry__link">
+                <h2 class="archive-entry__title">{post.data.title}</h2>
+                {post.data.description && (
+                  <p class="archive-entry__description">
+                    {post.data.description}
+                  </p>
+                )}
               </a>
-            )}
-            <span class="px-3 py-1.5 text-sm text-gray-500">
-              {page} / {totalPages}
-            </span>
-            {page < totalPages && (
-              <a
-                href={`/blog?page=${page + 1}`}
-                class="px-3 py-1.5 text-sm border border-gray-200 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                Next →
-              </a>
-            )}
-          </div>
-        )
-      }
-    </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="page-lede">No posts yet. Check back later.</p>
+      )
+    }
+
+    {
+      totalPages > 1 && (
+        <nav class="pagination" aria-label="Blog pages">
+          {page > 1 && (
+            <a class="button button--secondary" href={`/blog?page=${page - 1}`}>
+              Previous
+            </a>
+          )}
+          <span class="metadata">
+            {page} / {totalPages}
+          </span>
+          {page < totalPages && (
+            <a class="button button--secondary" href={`/blog?page=${page + 1}`}>
+              Next
+            </a>
+          )}
+        </nav>
+      )
+    }
   </main>
 </Layout>

@@ -1,85 +1,79 @@
 ---
-import { Home, Menu, X, Sun, Moon } from "lucide-astro";
+import { Menu, Moon, Sun, X } from "lucide-astro";
 
 const pathname = Astro.url.pathname;
 const links = [
-  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Writing" },
+  { href: "/about", label: "About" },
 ];
-const activeClass =
-  "text-gray-900 dark:text-gray-100 underline underline-offset-4";
-const inactiveClass =
-  "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:underline hover:underline-offset-4";
 
-function linkClass(href: string) {
-  const isHome = href === "/";
-  const isActive = isHome ? pathname === "/" : pathname.startsWith(href);
-  return `text-sm font-medium transition-colors ${isActive ? activeClass : inactiveClass}`;
+function isActive(href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 ---
 
-<header
-  class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-backdrop-filter:bg-white/60"
->
-  <div class="max-w-2xl mx-auto px-4 flex h-14 items-center justify-between">
-    <nav class="flex items-center gap-6">
-      <a
-        href="/"
-        class="text-gray-900 dark:text-gray-100 hover:opacity-70
-      transition-opacity"
-      >
-        <Home size={20} />
-        <span class="sr-only">Home</span>
-      </a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-wordmark" href="/" aria-label="Flynn Stevens, home">
+      Flynn Stevens
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
       {
         links.map((link) => (
-          <a href={link.href} class={`hidden sm:block ${linkClass(link.href)}`}>
+          <a
+            href={link.href}
+            class="site-nav__link"
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
             {link.label}
           </a>
         ))
       }
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="site-actions">
       <button
         id="theme-toggle"
         type="button"
-        class="text-gray-900 dark:text-gray-100 hover:opacity-70
-      transition-opacity p-2"
-        aria-label="Toggle theme"
+        class="icon-button"
+        aria-label="Toggle colour theme"
       >
-        <Sun size={18} id="sun-icon" class="hidden dark:block" />
-        <Moon size={18} id="moon-icon" class="dark:hidden" />
+        <Sun size={18} class="theme-icon theme-icon--sun" aria-hidden="true" />
+        <Moon size={18} class="theme-icon theme-icon--moon" aria-hidden="true" />
       </button>
       <button
         id="menu-toggle"
         type="button"
-        class="sm:hidden text-gray-900 dark:text-gray-100 hover:opacity-70
-      transition-opacity p-2"
-        aria-label="Toggle menu"
+        class="icon-button menu-button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
-        <Menu size={18} id="menu-icon" />
-        <X size={18} id="close-icon" class="hidden" />
+        <Menu size={18} id="menu-icon" aria-hidden="true" />
+        <X size={18} id="close-icon" hidden aria-hidden="true" />
       </button>
     </div>
   </div>
 
-  <div
-    id="mobile-menu"
-    class="hidden sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"
-  >
-    <nav class="max-w-2xl mx-auto px-4 py-4 flex flex-col gap-4">
+  <div id="mobile-menu" class="mobile-nav" data-open="false">
+    <nav
+      class="mobile-nav__inner site-header__inner"
+      aria-label="Mobile navigation"
+    >
       <a
         href="/"
-        class="flex items-center gap-2 text-sm font-medium text-gray-600
-      dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+        class="mobile-nav__link"
+        aria-current={pathname === "/" ? "page" : undefined}>Home</a
       >
-        <Home size={16} /> Home
-      </a>
       {
         links.map((link) => (
-          <a href={link.href} class={linkClass(link.href)}>
+          <a
+            href={link.href}
+            class="mobile-nav__link"
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
             {link.label}
           </a>
         ))
@@ -89,24 +83,37 @@ function linkClass(href: string) {
 </header>
 
 <script>
-  // Mobile menu
-  const toggle = document.getElementById("menu-toggle");
-  const menu = document.getElementById("mobile-menu");
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
   const menuIcon = document.getElementById("menu-icon");
   const closeIcon = document.getElementById("close-icon");
 
-  toggle?.addEventListener("click", () => {
-    const isHidden = menu?.classList.toggle("hidden");
-    menuIcon?.classList.toggle("hidden", !isHidden);
-    closeIcon?.classList.toggle("hidden", isHidden);
+  const setMenuOpen = (open: boolean) => {
+    mobileMenu?.setAttribute("data-open", String(open));
+    menuToggle?.setAttribute("aria-expanded", String(open));
+    menuToggle?.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+    if (menuIcon instanceof SVGElement) menuIcon.hidden = open;
+    if (closeIcon instanceof SVGElement) closeIcon.hidden = !open;
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
   });
 
-  // Theme toggle logic
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
   const themeToggle = document.getElementById("theme-toggle");
-  
+
   const applyTheme = () => {
     const saved = localStorage.getItem("theme");
-    const isDark = saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const isDark =
+      saved === "dark" ||
+      (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
     document.documentElement.classList.toggle("dark", isDark);
   };
 

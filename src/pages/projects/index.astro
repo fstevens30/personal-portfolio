@@ -18,14 +18,14 @@ const projects: Project[] = [
     date: new Date("2023-11-01"),
     description: "Fictional healthcare provider portal, made with Django.",
     image: "/images/nz-healthcare.png",
-    tags: ["Django", "Python", "HTML", "CSS", "mySQL"],
+    tags: ["Django", "Python", "HTML", "CSS", "MySQL"],
     sourceLink: "https://github.com/fstevens30/NZhealthcare",
   },
   {
     title: "Kiwi Huts iOS",
     date: new Date("2024-06-01"),
     description:
-      "Built with SwiftUI, explore DOC huts in New Zealand. Currently Unavailable.",
+      "Built with SwiftUI, explore DOC huts in New Zealand. Currently unavailable.",
     image: "/images/kiwi-huts.png",
     tags: ["Swift", "SwiftUI", "MapKit", "Firebase", "Python"],
     sourceLink: "https://github.com/fstevens30/Kiwi-Huts-iOS",
@@ -34,27 +34,27 @@ const projects: Project[] = [
     title: "Ferrostar .NET MAUI",
     date: new Date("2025-11-01"),
     description:
-      "Cross platform mobile navigation library, port of Ferrostar to work with .NET MAUI.",
+      "Cross-platform mobile navigation library, porting Ferrostar to work with .NET MAUI.",
     image: "/images/ferrostar-maui.png",
-    tags: ["C#", ".NET MAUI", "Ferrostar", "Android", "Maplibre"],
-    viewLink: "https://flynnstevens.dev/blog/ferrostar-maui",
+    tags: ["C#", ".NET MAUI", "Ferrostar", "Android", "MapLibre"],
+    viewLink: "/blog/ferrostar-maui",
   },
   {
     title: "Virtual Emerge",
     date: new Date("2024-11-01"),
     description:
-      "Explore Ara BICT student final year projects, in the Virtual Emerge showcase.",
+      "Explore Ara BICT student final-year projects in the Virtual Emerge showcase.",
     image: "/images/virtual-emerge.png",
-    tags: ["Next.js", "TypeScript", "Shadcn UI", "Tailwind CSS", "Supabase"],
+    tags: ["Next.js", "TypeScript", "shadcn/ui", "Tailwind CSS", "Supabase"],
     viewLink: "https://virtual-emerge.vercel.app/",
     sourceLink: "https://github.com/fstevens30/virtual-emerge",
   },
   {
     title: "Personal Portfolio",
     date: new Date("2026-06-01"),
-    description: "This website. A showcase of my work and a blog.",
+    description: "This website: a showcase of my work and a technical journal.",
     image: "/images/placeholder.webp",
-    tags: ["Astro", "Tailwind CSS", "TypeScript", "Maplibre"],
+    tags: ["Astro", "Tailwind CSS", "TypeScript", "MapLibre"],
     viewLink: "https://flynnstevens.dev",
     sourceLink: "https://github.com/fstevens30/personal-portfolio",
   },
@@ -62,85 +62,78 @@ const projects: Project[] = [
     title: "Glance Dashboard",
     date: new Date("2026-05-01"),
     description:
-      "A dashboard for my homelab. Built using the Glances API and Glance Dashboard project.",
+      "A dashboard for my homelab, built with the Glances API and Glance dashboard project.",
     image: "/images/glance.png",
     tags: ["YAML", "Docker", "Homelab"],
     sourceLink: "https://github.com/fstevens30/glance-dashboard-config",
   },
-];
+].sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
-<Layout title="Projects — Flynn Stevens">
-  <main class="max-w-2xl mx-auto px-4 py-16">
-    <div class="space-y-2 mb-8">
-      <h1
-        class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
-      >
-        Projects
-      </h1>
-      <p class="text-gray-500 dark:text-gray-400 text-lg font-semibold mt-2">
-        Take a look at some of the projects I have worked on.
+<Layout
+  title="Projects — Flynn Stevens"
+  description="Selected software projects by Flynn Stevens."
+>
+  <main class="page-frame project-catalogue">
+    <header class="page-intro">
+      <h1 class="page-title">Selected projects</h1>
+      <p class="page-lede">
+        Mapping tools, mobile applications, student showcases, and small systems
+        built to solve practical problems.
       </p>
-      <hr class="border-gray-200 dark:border-gray-800 mb-8" />
+    </header>
+
+    <ol class="project-list">
       {
-        projects.length > 0 ? (
-          <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-            {projects
-              .sort((a, b) => b.date.getTime() - a.date.getTime())
-              .map((project) => (
-                <div class="flex flex-col gap-4 rounded-lg border border-gray-200 dark:border-gray-800 p-4">
-                  <span class="text-sm text-gray-400 dark:text-gray-500">
-                    {project.date.toLocaleDateString("en-NZ", {
-                      year: "numeric",
-                      month: "short",
-                    })}
-                  </span>
-                  <h2 class="font-semibold text-lg text-gray-900 dark:text-gray-100">
-                    {project.title}
-                  </h2>
-                  <p class="text-gray-500 dark:text-gray-400 text-sm">
-                    {project.description}
-                  </p>
-                  <img
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    class="rounded-md border border-gray-200 dark:border-gray-800 object-cover h-52 w-full"
+        projects.map((project) => (
+          <li class="project-entry">
+            <figure class="project-entry__media">
+              <img
+                src={project.image}
+                alt={`${project.title} interface`}
+                class="project-entry__image"
+                loading="lazy"
+                width="1200"
+                height="750"
+              />
+            </figure>
+            <div class="project-entry__content">
+              <time class="metadata" datetime={project.date.toISOString()}>
+                {project.date.toLocaleDateString("en-NZ", {
+                  year: "numeric",
+                  month: "long",
+                })}
+              </time>
+              <h2 class="project-entry__title">{project.title}</h2>
+              <p class="project-entry__description">{project.description}</p>
+              <div class="tag-list" aria-label="Technologies">
+                {project.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+              <div class="project-actions">
+                {project.viewLink ? (
+                  <Button
+                    href={project.viewLink}
+                    text="View project"
+                    primary
+                    isExternal={project.viewLink.startsWith("http")}
                   />
-                  <div class="flex flex-wrap gap-1">
-                    {project.tags.map((tag) => (
-                      <span class="text-[10px] bg-gray-100 dark:bg-gray-900 text-gray-500 dark:text-gray-300 p-1 rounded">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div class="flex gap-2 mt-auto justify-between">
-                    {project.viewLink ? (
-                      <Button
-                        href={project.viewLink}
-                        text="View"
-                        primary
-                        isExternal
-                      />
-                    ) : (
-                      <Button href="#" text="View" isExternal disabled />
-                    )}
-                    {project.sourceLink ? (
-                      <Button
-                        href={project.sourceLink}
-                        text="Source"
-                        isExternal
-                      />
-                    ) : (
-                      <Button href="#" text="Source" isExternal disabled />
-                    )}
-                  </div>
-                </div>
-              ))}
-          </div>
-        ) : (
-          <p class="text-gray-500">No projects yet, check back later.</p>
-        )
+                ) : (
+                  <Button text="View unavailable" primary disabled />
+                )}
+                {project.sourceLink ? (
+                  <Button
+                    href={project.sourceLink}
+                    text="View source"
+                    isExternal
+                  />
+                ) : (
+                  <Button text="Source unavailable" disabled />
+                )}
+              </div>
+            </div>
+          </li>
+        ))
       }
-    </div>
+    </ol>
   </main>
 </Layout>

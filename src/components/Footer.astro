@@ -1,0 +1,25 @@
+---
+const links = [
+  { href: "https://github.com/fstevens30", label: "GitHub" },
+  { href: "https://bsky.app/profile/flynnstevens.dev", label: "Bluesky" },
+  { href: "https://www.linkedin.com/in/fstevens30/", label: "LinkedIn" },
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__identity">
+      <span class="site-footer__name">Flynn Stevens</span>
+      <span class="site-footer__place">Ōtautahi · Aotearoa</span>
+    </div>
+    <nav class="site-footer__links" aria-label="Social links">
+      {
+        links.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

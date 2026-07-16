@@ -3,109 +3,103 @@ import Layout from "../../layouts/Layout.astro";
 import Map from "../../components/Map.astro";
 ---
 
-<Layout title="About — Flynn Stevens">
-  <main class="max-w-2xl mx-auto px-4 py-16">
-    <div class="space-y-2 mb-8">
-      <h1
-        class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
-      >
-        About
-      </h1>
-      <p class="text-gray-500 dark:text-gray-400 text-lg font-semibold mt-2">
-        Learn more about me and my background.
-      </p>
-      <hr class="border-gray-200 dark:border-gray-800 mb-8" />
-
-      <div class="space-y-2 mb-8">
-        <div
-          class="flex items-center gap-4 md:flex-row flex-col md:items-start mt-8"
-        >
-          <img
-            src="/images/invers.jpg"
-            alt="Invercargill, New Zealand"
-            class="w-auto h-48 rounded-md border border-gray-200 dark:border-gray-800 object-cover"
-          />
-          <div>
-            <div class="flex flex-col items-center justify-between">
-              <p class="text-gray-900 dark:text-gray-100 text-md">
-                Hi, I'm Flynn, a software developer based in Christchurch, New
-                Zealand. I really enjoy my work, being able to solve problems
-                and see how things work deep down is my favourite part.
-              </p>
-              <p class="text-gray-900 dark:text-gray-100 text-md mt-4">
-                In my free time, I enjoy hiking, gaming and working on personal
-                projects, like my homelab.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <h2
-          class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mt-8"
-        >
-          Background
-        </h2>
-        <div
-          class="flex items-center gap-4 md:flex-row flex-col md:items-start"
-        >
-          <div>
-            <div class="flex md:flex-col items-center justify-between">
-              <p class="text-gray-900 dark:text-gray-100 text-md">
-                I grew up in Invercargill, New Zealand. I moved to Nelson when I
-                was 19 for a change of scenery and to start fresh. After a few
-                years there I decided to enrol in the Diploma in Web Design and
-                Development at NMIT, which is where I discovered my passion for
-                software development.
-              </p>
-            </div>
-          </div>
-          <img
-            src="/images/nelson.jpg"
-            alt="Nelson, New Zealand"
-            class="w-auto h-48 rounded-md border border-gray-200 dark:border-gray-800 object-cover"
-          />
-        </div>
-
-        <h2
-          class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mt-8"
-        >
-          Career
-        </h2>
-        <div
-          class="flex items-center gap-4 md:flex-row flex-col md:items-start"
-        >
-          <img
-            src="/images/chch.jpg"
-            alt="Christchurch, New Zealand"
-            class="w-auto h-48 rounded-md border border-gray-200 dark:border-gray-800 object-cover"
-          />
-          <div>
-            <div class="flex md:flex-col items-center justify-between">
-              <p class="text-gray-900 dark:text-gray-100 text-md">
-                After graduating I moved to Christchurch where I completed my
-                Bachelor of Information Technology at Ara Institute of
-                Canterbury. After graduating I started working at a local
-                software company called
-                <a
-                  href="https://madcapdairysoftware.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary-600 underline hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-400"
-                >
-                  Contec Group International</a
-                >
-                where I work on mapping applications for the dairy industry.
-              </p>
-            </div>
-          </div>
-        </div>
-        <h2
-          class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mt-8"
-        >
-          My Journey
-        </h2>
-        <Map latitude={-43} longitude={170} zoom={4} />
+<Layout
+  title="About — Flynn Stevens"
+  description="Flynn Stevens’ journey from Invercargill to Christchurch and into software development."
+>
+  <main class="page-frame about-journey">
+    <section class="about-opening" aria-labelledby="about-title">
+      <img
+        src="/images/profile.webp"
+        alt="Flynn Stevens"
+        class="about-opening__image"
+        width="640"
+        height="800"
+        fetchpriority="high"
+      />
+      <div class="about-opening__copy">
+        <p class="metadata">Developer · Map enthusiast · Homelab tinkerer</p>
+        <h1 id="about-title" class="about-opening__title">A little more personal.</h1>
+        <p class="about-opening__lede">
+          I’m a software developer based in Christchurch, New Zealand. I enjoy
+          solving practical problems and understanding how systems work beneath
+          the surface.
+        </p>
+        <p class="page-lede">
+          Away from work, I spend time hiking, gaming, building personal
+          projects, and maintaining my homelab.
+        </p>
       </div>
-    </div>
+    </section>
+
+    <section class="journey" aria-labelledby="journey-title">
+      <h2 id="journey-title" class="journey-title">How I got here.</h2>
+
+      <article class="journey-stop">
+        <img
+          src="/images/invers.jpg"
+          alt="Invercargill, New Zealand"
+          class="journey-stop__image"
+          width="1200"
+          height="800"
+          loading="lazy"
+        />
+        <div class="journey-stop__copy">
+          <p class="metadata">Invercargill</p>
+          <h3 class="journey-stop__title">Where I grew up</h3>
+          <p>
+            I grew up in Invercargill before moving north at nineteen for a
+            change of scenery and a fresh start.
+          </p>
+        </div>
+      </article>
+
+      <article class="journey-stop">
+        <img
+          src="/images/nelson.jpg"
+          alt="Nelson, New Zealand"
+          class="journey-stop__image"
+          width="1200"
+          height="800"
+          loading="lazy"
+        />
+        <div class="journey-stop__copy">
+          <p class="metadata">Nelson</p>
+          <h3 class="journey-stop__title">Finding software</h3>
+          <p>
+            In Nelson, I enrolled in the Diploma in Web Design and Development
+            at NMIT. That was where I discovered my passion for software
+            development.
+          </p>
+        </div>
+      </article>
+
+      <article class="journey-stop">
+        <img
+          src="/images/chch.jpg"
+          alt="Christchurch, New Zealand"
+          class="journey-stop__image"
+          width="1200"
+          height="800"
+          loading="lazy"
+        />
+        <div class="journey-stop__copy">
+          <p class="metadata">Christchurch</p>
+          <h3 class="journey-stop__title">Building a career</h3>
+          <p>
+            After moving to Christchurch, I completed my Bachelor of Information
+            Technology at Ara Institute of Canterbury. I now work at
+            <a
+              class="text-link"
+              href="https://madcapdairysoftware.com/"
+              target="_blank"
+              rel="noopener noreferrer">Contec Group International</a
+            >, building mapping applications for the dairy industry.
+          </p>
+        </div>
+      </article>
+
+      <Map latitude={-43} longitude={170} zoom={4} />
+    </section>
   </main>
 </Layout>

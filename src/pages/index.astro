@@ -2,18 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
 
-const links = {
-  github: "https://github.com/fstevens30",
-  bluesky: "https://bsky.app/profile/flynnstevens.dev",
-  linkedin: "https://www.linkedin.com/in/fstevens30/",
-  twitter: "https://twitter.com/flynnstevens30",
-};
-
 const socialLinks = [
-  { href: links.github, label: "GitHub", icon: "/icons/github.svg" },
-  { href: links.bluesky, label: "Bluesky", icon: "/icons/bluesky.svg" },
-  { href: links.linkedin, label: "LinkedIn", icon: "/icons/linkedin.svg" },
-  { href: links.twitter, label: "Twitter", icon: "/icons/twitter.svg" },
+  { href: "https://github.com/fstevens30", label: "GitHub" },
+  { href: "https://bsky.app/profile/flynnstevens.dev", label: "Bluesky" },
+  { href: "https://www.linkedin.com/in/fstevens30/", label: "LinkedIn" },
+  { href: "https://twitter.com/flynnstevens30", label: "Twitter" },
 ];
 
 const tech = [
@@ -29,8 +22,8 @@ const tech = [
   { name: "OpenStreetMap", icon: "/icons/openstreetmap.svg" },
   { name: "MapLibre", icon: "/icons/maplibre.svg" },
   { name: "Docker", icon: "/icons/docker.svg" },
-  { name: "TRPC", icon: "/icons/trpc.svg" },
-  { name: "astro", icon: "/icons/astro.svg" },
+  { name: "tRPC", icon: "/icons/trpc.svg" },
+  { name: "Astro", icon: "/icons/astro.svg" },
   { name: "Drizzle", icon: "/icons/drizzle.svg" },
   { name: "Zod", icon: "/icons/zod.svg" },
 ];
@@ -40,106 +33,84 @@ const tech = [
   title="Flynn Stevens"
   description="Junior Software Developer based in Ōtautahi, Aotearoa"
 >
-  <main class="max-w-2xl mx-auto px-4 py-16 md:py-32">
-    <section class="flex flex-col items-center text-center gap-6 pb-16">
-      <img
-        src="/images/profile.jpeg"
-        alt="Flynn Stevens"
-        width="120"
-        height="120"
-        class="rounded-full"
-      />
-      <div class="space-y-2">
-        <h1
-          class="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-gray-100"
-        >
-          Kia Ora, I'm Flynn
-        </h1>
-        <p
-          class="text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-md mx-auto"
-        >
-          Junior Software Developer based in Ōtautahi, Aotearoa. Working on
-          web-based mapping applications and cross-platform mobile apps.
+  <main class="page-frame home-workbench">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__copy">
+        <p class="metadata">Ōtautahi · Aotearoa</p>
+        <h1 id="home-title" class="home-hero__title">Kia ora, I’m Flynn.</h1>
+        <p class="home-hero__lede">
+          A junior software developer working on web-based mapping applications
+          and cross-platform mobile apps.
+        </p>
+        <div class="button-row">
+          <Button href="/projects" text="Explore projects" primary />
+          <Button href="/blog" text="Read the journal" />
+        </div>
+      </div>
+
+      <aside class="profile-panel" aria-label="Current role and social links">
+        <img
+          src="/images/profile.webp"
+          alt="Flynn Stevens"
+          width="640"
+          height="800"
+          class="profile-panel__image"
+          fetchpriority="high"
+        />
+        <div class="profile-panel__body">
+          <p class="profile-panel__role">
+            Junior Software Developer at Contec Group International.
+          </p>
+          <div class="social-list" aria-label="Connect with Flynn">
+            {
+              socialLinks.map((link) => (
+                <a
+                  class="text-link"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="home-note" aria-labelledby="practice-title">
+      <h2 id="practice-title" class="home-note__title">What I work on</h2>
+      <div class="home-note__copy">
+        <p>
+          I enjoy working with web and mobile technologies, particularly mapping
+          and geospatial tools. Learning how systems work beneath the surface is
+          one of my favourite parts of software development.
+        </p>
+        <p>
+          At Contec Group International, I work on mapping applications for the
+          dairy industry. Outside work, I build personal projects and maintain a
+          homelab.
         </p>
       </div>
-      <div class="flex gap-2 flex-wrap justify-center">
-        <Button href="/projects" text="See my projects" primary={true} />
-        <Button href="/blog" text="Read my blog" primary={false} />
-      </div>
-
-      <!-- Social links -->
-      <p class="text-sm text-gray-400 mt-6">Connect with me</p>
-      <div class="flex gap-2 flex-wrap justify-center">
-        {
-          socialLinks.map(({ href, label, icon }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border border-gray-200 dark:border-gray-700"
-              aria-label={label}
-            >
-              <img
-                src={icon}
-                alt={label}
-                class="w-6 h-6 dark:invert"
-                loading="lazy"
-              />
-            </a>
-          ))
-        }
-      </div>
     </section>
 
-    <section
-      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
-    >
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
-        About Me
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        I enjoying working with web and mobile technologies, as well as mapping
-        and geospatial tools. I enjoy learning new technologies and solving
-        problems.
-      </p>
-      <p class="text-gray-600 dark:text-gray-400">
-        I am a Junior Software Developer at{" "}
+    <section class="tech-index" aria-labelledby="tech-title">
+      <header class="tech-index__head">
+        <h2 id="tech-title" class="tech-index__title">Tools on the bench</h2>
         <a
-          href="https://madcapdairysoftware.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-primary-600 underline hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-400"
-          >Contec Group International</a
-        >
-        where I work on mapping applications for the dairy industry.
-      </p>
-    </section>
-
-    <section
-      class="py-10 border-t border-gray-100 dark:border-gray-800 space-y-4"
-    >
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-400">
-        Tech
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        Technologies I am most familiar with and enjoy the most. To see what I
-        use most day-to-day, check out my{" "}<a
+          class="text-link"
           href="https://wakatime.com/@fstevens30"
           target="_blank"
-          rel="noopener noreferrer"
-          class="text-primary-600 underline hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-400"
-          >WakaTime</a
+          rel="noopener noreferrer">Day-to-day activity on WakaTime</a
         >
-        profile.
-      </p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+      </header>
+      <div class="tech-index__list">
         {
-          tech.map((t) => (
-            <div class="flex flex-col items-center gap-1 p-4">
-              <img src={t.icon} alt={t.name} class="w-16 h-16" />
-              <span class="text-sm text-gray-700 dark:text-gray-300">
-                {t.name}
-              </span>
+          tech.map((item) => (
+            <div class="tech-item">
+              <img src={item.icon} alt="" width="32" height="32" loading="lazy" />
+              <span>{item.name}</span>
             </div>
           ))
         }

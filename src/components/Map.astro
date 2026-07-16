@@ -7,11 +7,23 @@ interface Props {
 const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
 ---
 
-<div class="rounded-md" id="map" style="width: 100%; height: 400px;"></div>
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css"
-/>
+<figure
+  class="map-figure"
+  aria-label="Flynn’s journey through Invercargill, Nelson, and Christchurch"
+>
+  <div
+    id="map"
+    class="map-canvas"
+    role="region"
+    aria-label="Interactive map showing the route from Invercargill to Nelson and Christchurch"
+  >
+  </div>
+  <figcaption class="map-caption">
+    Invercargill → Nelson → Christchurch
+  </figcaption>
+</figure>
+
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" />
 
 <script define:vars={{ latitude, longitude, zoom }}>
   window.__mapConfig = { latitude, longitude, zoom };
@@ -19,19 +31,42 @@ const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
 
 <script>
   import maplibregl from "maplibre-gl";
+  import {
+    createJourneyArcs,
+    toLegacyRgb,
+    type Position,
+  } from "../lib/journey-map";
 
   const { latitude, longitude, zoom } = (window as any).__mapConfig;
-
-  const points: [number, number][] = [
-    [168.347, -46.4118], // Invercargill
-    [173.2838, -41.2743], // Nelson
-    [172.6366, -43.5309], // Christchurch
+  const points: Position[] = [
+    [168.347, -46.4118],
+    [173.2838, -41.2743],
+    [172.6366, -43.5309],
   ];
 
   function getMapStyle() {
     return document.documentElement.classList.contains("dark")
       ? "https://tiles.openfreemap.org/styles/dark"
       : "https://tiles.openfreemap.org/styles/bright";
+  }
+
+  function resolveColor(token: string) {
+    const probe = document.createElement("span");
+    probe.style.color = `var(${token})`;
+    probe.hidden = true;
+    document.body.append(probe);
+    const color = getComputedStyle(probe).color;
+    probe.remove();
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = 1;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    if (!context) return toLegacyRgb(color);
+
+    context.fillStyle = color;
+    context.fillRect(0, 0, 1, 1);
+    return toLegacyRgb(context.getImageData(0, 0, 1, 1).data);
   }
 
   const map = new maplibregl.Map({
@@ -41,28 +76,21 @@ const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
     zoom,
   });
 
-  new maplibregl.Marker({ color: "grey" })
-    .setLngLat([168.347, -46.4118])
-    .addTo(map);
-  new maplibregl.Marker({ color: "grey" })
-    .setLngLat([173.2838, -41.2743])
-    .addTo(map);
-  new maplibregl.Marker({ color: "#facc15" })
-    .setLngLat([172.6366, -43.5309])
-    .addTo(map);
+  function addMarkers() {
+    if (document.querySelector(".maplibregl-marker")) return;
+    const muted = resolveColor("--color-map-muted");
+    const accent = resolveColor("--color-accent-strong");
+    new maplibregl.Marker({ color: muted }).setLngLat(points[0]).addTo(map);
+    new maplibregl.Marker({ color: muted }).setLngLat(points[1]).addTo(map);
+    new maplibregl.Marker({ color: accent }).setLngLat(points[2]).addTo(map);
+  }
 
   function addLayers() {
+    addMarkers();
     if (!map.getSource("route")) {
       map.addSource("route", {
         type: "geojson",
-        data: {
-          type: "Feature",
-          geometry: {
-            type: "LineString",
-            coordinates: points,
-          },
-          properties: {},
-        },
+        data: createJourneyArcs(points),
       });
     }
 
@@ -71,28 +99,21 @@ const { latitude = 0, longitude = 0, zoom = 10 } = Astro.props;
         id: "route-line",
         type: "line",
         source: "route",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
+        layout: { "line-join": "round", "line-cap": "round" },
         paint: {
-          "line-color": "#facc15",
-          "line-width": 2,
-          "line-dasharray": [2, 2],
+          "line-color": resolveColor("--color-accent-strong"),
+          "line-width": 3,
+          "line-opacity": 0.82,
+          "line-dasharray": [0.1, 2.1],
         },
       });
     }
   }
 
   map.on("load", addLayers);
-
-  // Re-add layers after theme swap
   map.on("style.load", addLayers);
 
-  const observer = new MutationObserver(() => {
-    map.setStyle(getMapStyle());
-  });
-
+  const observer = new MutationObserver(() => map.setStyle(getMapStyle()));
   observer.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class"],
